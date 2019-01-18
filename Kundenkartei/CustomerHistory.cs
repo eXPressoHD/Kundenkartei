@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kundenkartei
 {
-    public partial class NewAppointment : MetroFramework.Forms.MetroForm
+    public partial class CustomerHistory : MetroFramework.Forms.MetroForm
     {
-        public NewAppointment()
+        public CustomerHistory()
         {
             InitializeComponent();
         }
@@ -21,14 +21,15 @@ namespace Kundenkartei
         {
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
-            
-            table = SqliteDataAccess.GetKundenDataOnDate(dateTimePicker1.Value);
+            table = SqliteDataAccess.GetKundenHistorie(this.Tag as Kunde);
             foreach (DataRow row in table.Rows)
             {
-                Kunde k = new Kunde();
-                k.KundenNr = Convert.ToInt32(row["KundenNr"]);
-                k.Name = row["Name"].ToString();
-                k.Telefon = row["Telefon"].ToString();
+                Kunde k = new Kunde
+                {
+                    KundenNr = Convert.ToInt32(row["KundenNr"]),
+                    Name = row["Name"].ToString(),
+                    Telefon = row["Telefon"].ToString(),
+                };
                 kundenListe.Add(k);
             }
 
@@ -38,7 +39,6 @@ namespace Kundenkartei
                 {
                     Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Regular)
                 };
-                
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
                 item.SubItems.Add(GetDate(s));
@@ -54,19 +54,21 @@ namespace Kundenkartei
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[0].ToString();
-            } else
+            }
+            else
             {
                 return "";
             }
-        }    
-        
+        }
+
         private string GetDienstLeistung(Kunde s)
         {
             DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[1].ToString();
-            } else
+            }
+            else
             {
                 return "";
             }
@@ -85,26 +87,13 @@ namespace Kundenkartei
             }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void CustomerHistory_Activated(object sender, EventArgs e)
         {
             metroListView1.Items.Clear();
             FillCustomerList();
         }
 
-        private void NewAppointment_Load(object sender, EventArgs e)
-        {
-            metroListView1.Items.Clear();
-            FillCustomerList();
-        }
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            CreateAppointment c = new CreateAppointment();
-            c.Tag = dateTimePicker1.Value;
-            c.Show();
-        }
-
-        private void metroButton2_Click(object sender, EventArgs e)
+        private void metroButton3_Click(object sender, EventArgs e)
         {
             if (metroListView1.CheckedItems.Count == 1)
             {
@@ -121,19 +110,13 @@ namespace Kundenkartei
                 }
                 catch (Exception ex)
                 {
-                    throw (ex);
+                    throw(ex);
                 }
             }
             else
             {
-                MessageBox.Show("Bitte einen Termin auswählen");
+                MessageBox.Show("Bitte einen Kunden auswählen");
             }
-        }
-
-        private void NewAppointment_Activated(object sender, EventArgs e)
-        {
-            metroListView1.Items.Clear();
-            FillCustomerList();
         }
     }
 }

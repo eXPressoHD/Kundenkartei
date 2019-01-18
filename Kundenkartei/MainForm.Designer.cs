@@ -1,6 +1,6 @@
 ﻿namespace Kundenkartei
 {
-    partial class Main
+    partial class MainForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -38,9 +38,11 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClearSearch = new MetroFramework.Controls.MetroButton();
             this.metroCheckBoxTermineHeute = new MetroFramework.Controls.MetroCheckBox();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // CreateKunde
@@ -59,7 +61,7 @@
             // 
             // 
             this.tbKundenName.CustomButton.Image = null;
-            this.tbKundenName.CustomButton.Location = new System.Drawing.Point(89, 1);
+            this.tbKundenName.CustomButton.Location = new System.Drawing.Point(139, 1);
             this.tbKundenName.CustomButton.Name = "";
             this.tbKundenName.CustomButton.Size = new System.Drawing.Size(31, 31);
             this.tbKundenName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -69,7 +71,7 @@
             this.tbKundenName.CustomButton.Visible = false;
             this.tbKundenName.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.tbKundenName.Lines = new string[0];
-            this.tbKundenName.Location = new System.Drawing.Point(23, 125);
+            this.tbKundenName.Location = new System.Drawing.Point(23, 206);
             this.tbKundenName.MaxLength = 32767;
             this.tbKundenName.Name = "tbKundenName";
             this.tbKundenName.PasswordChar = '\0';
@@ -79,7 +81,7 @@
             this.tbKundenName.SelectionLength = 0;
             this.tbKundenName.SelectionStart = 0;
             this.tbKundenName.ShortcutsEnabled = true;
-            this.tbKundenName.Size = new System.Drawing.Size(121, 33);
+            this.tbKundenName.Size = new System.Drawing.Size(171, 33);
             this.tbKundenName.TabIndex = 2;
             this.tbKundenName.UseSelectable = true;
             this.tbKundenName.WaterMark = "Name suchen...";
@@ -89,7 +91,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(150, 63);
+            this.metroButton1.Location = new System.Drawing.Point(23, 102);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(121, 33);
             this.metroButton1.TabIndex = 5;
@@ -99,7 +101,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(277, 63);
+            this.metroButton2.Location = new System.Drawing.Point(23, 141);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(121, 33);
             this.metroButton2.TabIndex = 6;
@@ -115,12 +117,13 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.metroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.metroListView1.Location = new System.Drawing.Point(23, 164);
+            this.metroListView1.Location = new System.Drawing.Point(23, 245);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
-            this.metroListView1.Size = new System.Drawing.Size(761, 397);
+            this.metroListView1.Size = new System.Drawing.Size(791, 397);
             this.metroListView1.TabIndex = 7;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.View = System.Windows.Forms.View.Details;
@@ -148,11 +151,15 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Dienstleistung";
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 125;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Bei";
             // 
             // ClearSearch
             // 
-            this.ClearSearch.Location = new System.Drawing.Point(141, 125);
+            this.ClearSearch.Location = new System.Drawing.Point(190, 206);
             this.ClearSearch.Name = "ClearSearch";
             this.ClearSearch.Size = new System.Drawing.Size(34, 33);
             this.ClearSearch.TabIndex = 8;
@@ -163,7 +170,7 @@
             // metroCheckBoxTermineHeute
             // 
             this.metroCheckBoxTermineHeute.AutoSize = true;
-            this.metroCheckBoxTermineHeute.Location = new System.Drawing.Point(685, 143);
+            this.metroCheckBoxTermineHeute.Location = new System.Drawing.Point(715, 224);
             this.metroCheckBoxTermineHeute.Name = "metroCheckBoxTermineHeute";
             this.metroCheckBoxTermineHeute.Size = new System.Drawing.Size(99, 15);
             this.metroCheckBoxTermineHeute.TabIndex = 9;
@@ -173,7 +180,7 @@
             // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(663, 63);
+            this.metroButton3.Location = new System.Drawing.Point(693, 63);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(121, 33);
             this.metroButton3.TabIndex = 11;
@@ -181,11 +188,22 @@
             this.metroButton3.UseSelectable = true;
             this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click_1);
             // 
-            // Main
+            // metroButton4
+            // 
+            this.metroButton4.Location = new System.Drawing.Point(190, 63);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(121, 33);
+            this.metroButton4.TabIndex = 12;
+            this.metroButton4.Text = "Kundenhistorie";
+            this.metroButton4.UseSelectable = true;
+            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 584);
+            this.ClientSize = new System.Drawing.Size(844, 669);
+            this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroCheckBoxTermineHeute);
             this.Controls.Add(this.ClearSearch);
@@ -194,7 +212,7 @@
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.tbKundenName);
             this.Controls.Add(this.CreateKunde);
-            this.Name = "Main";
+            this.Name = "MainForm";
             this.Resizable = false;
             this.Text = "Kundenverwaltung - Hairlight";
             this.Activated += new System.EventHandler(this.Main_Activated);
@@ -219,6 +237,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private MetroFramework.Controls.MetroCheckBox metroCheckBoxTermineHeute;
         private MetroFramework.Controls.MetroButton metroButton3;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private MetroFramework.Controls.MetroButton metroButton4;
     }
 }
 

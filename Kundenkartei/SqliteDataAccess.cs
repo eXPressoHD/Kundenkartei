@@ -11,6 +11,8 @@ namespace Kundenkartei
 {
     public class SqliteDataAccess
     {
+        private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
@@ -43,6 +45,7 @@ namespace Kundenkartei
             return dt;
         }
 
+
         public static DataTable GetKundenDataToday() //Termine am selben Tag
         {
             DataTable dt = new DataTable();
@@ -53,8 +56,92 @@ namespace Kundenkartei
                     cnn.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                     {
-                        cmd.CommandText = "SELECT * FROM Kunden WHERE Termin Like @today ORDER BY Termin asc";//order by termin sysdate...
+                        cmd.CommandText = "SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @today ORDER BY t.Datum asc";//order by termin sysdate...
                         cmd.Parameters.AddWithValue("@today",  "%" + DateTime.Today.ToString("dd.MM.yyyy") + "%");
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetKundenHistorie(Kunde k) //Alle Einträge eines Kunden
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr ORDER BY t.Datum asc";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetTerminInfos(Termin t) //Alle Einträge eines Kunden
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT t.TerminNR FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum = @datum";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@datum", t.Datum);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetKundenTerminAndDienstleistung(Kunde k)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter FROM Kunden k Inner Join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);                    
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             dt.Load(reader);
@@ -81,7 +168,7 @@ namespace Kundenkartei
                     cnn.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                     {
-                        cmd.CommandText = "SELECT * FROM Kunden WHERE Termin Like @date ORDER BY Termin asc";//order by termin sysdate...
+                        cmd.CommandText = "SELECT * FROM Kunden k INNER JOIN Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @date  ORDER BY t.Datum asc";//order by termin sysdate...
                         cmd.Parameters.AddWithValue("@date", "%"+ date.ToString("dd.MM.yyyy") + "%");
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
@@ -98,6 +185,7 @@ namespace Kundenkartei
             }
             return dt;
         }
+    
 
         public static long CreateKunde(Kunde kunde)
         {
@@ -116,11 +204,55 @@ namespace Kundenkartei
 
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    _logger.Error(ex);
                 }
             }
 
             return lastRow;
+        }
+
+        public static void CreateTermin(Termin t)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
+            {
+                con.Open();
+                SQLiteCommand insertSQL = new SQLiteCommand("INSERT INTO Termine (Datum, Dienstleistung, KundenNr, Mitarbeiter) VALUES (@datum, @dienstleistung, @kundenNr, @mitarbeiter)", con);
+                insertSQL.Parameters.AddWithValue("@datum", t.Datum);
+                insertSQL.Parameters.AddWithValue("@dienstleistung", t.Dienstleistung);
+                insertSQL.Parameters.AddWithValue("@kundenNr", t.KundenNr);
+                insertSQL.Parameters.AddWithValue("@mitarbeiter", t.Mitarbeiter);
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
+            }
+        }
+
+        public static void UpdateTermin(Termin t)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
+            {
+                con.Open();
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Termine SET Datum = @datum, Dienstleistung = @dienstleistung, Mitarbeiter = @mitarbeiter WHERE TerminNr = @terminNr", con);
+                insertSQL.Parameters.AddWithValue("@datum", t.Datum);
+                insertSQL.Parameters.AddWithValue("@dienstleistung", t.Dienstleistung);
+                insertSQL.Parameters.AddWithValue("@mitarbeiter", t.Mitarbeiter);
+                insertSQL.Parameters.AddWithValue("@terminNr", t.TerminNr);
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);                    
+                }
+            }
         }
 
         public static DataTable LookUpKunde(string name)
@@ -180,12 +312,10 @@ namespace Kundenkartei
             using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
             {
                 con.Open();
-                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon , Termin = @termin , Dienstleistung = @dienstleistung WHERE KundenNr = @kundenNr", con);
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon WHERE KundenNr = @kundenNr", con);
                 insertSQL.Parameters.AddWithValue("@kundenNr", kunde.KundenNr);
                 insertSQL.Parameters.AddWithValue("@name", kunde.Name);
                 insertSQL.Parameters.AddWithValue("@telefon", kunde.Telefon);
-                insertSQL.Parameters.AddWithValue("@termin", kunde.LetzterTermin);
-                insertSQL.Parameters.AddWithValue("@dienstleistung", kunde.Dienstleistung);
                 lastRow = con.LastInsertRowId;
                 try
                 {
@@ -194,7 +324,7 @@ namespace Kundenkartei
 
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    _logger.Error(ex);                    
                 }
             }
         }
@@ -215,7 +345,7 @@ namespace Kundenkartei
 
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    _logger.Error(ex);
                 }
             }
         }

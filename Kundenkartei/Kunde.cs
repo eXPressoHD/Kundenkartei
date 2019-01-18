@@ -11,17 +11,6 @@ namespace Kundenkartei
         public int KundenNr { get; set; }
         public string Name { get; set; }
         public string Telefon { get; set; }
-        public string LetzterTermin { get; set; }
-        public string Dienstleistung { get; set; }
-
-        public Kunde(int kundenNr, string name, string telefon, string letzterTermin, string dienst)
-        {
-            KundenNr = kundenNr;
-            Name = name;
-            Telefon = telefon;
-            LetzterTermin = letzterTermin;
-            Dienstleistung = dienst;
-        }
 
         public Kunde(int kundenNr, string name, string telefon)
         {

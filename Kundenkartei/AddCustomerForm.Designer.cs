@@ -33,7 +33,6 @@
             this.tbName = new MetroFramework.Controls.MetroTextBox();
             this.tbTelefon = new MetroFramework.Controls.MetroTextBox();
             this.Kunde_anlegen = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -60,7 +59,7 @@
             // 
             // 
             this.tbName.CustomButton.Image = null;
-            this.tbName.CustomButton.Location = new System.Drawing.Point(138, 1);
+            this.tbName.CustomButton.Location = new System.Drawing.Point(149, 1);
             this.tbName.CustomButton.Name = "";
             this.tbName.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -90,7 +89,7 @@
             // 
             // 
             this.tbTelefon.CustomButton.Image = null;
-            this.tbTelefon.CustomButton.Location = new System.Drawing.Point(138, 1);
+            this.tbTelefon.CustomButton.Location = new System.Drawing.Point(149, 1);
             this.tbTelefon.CustomButton.Name = "";
             this.tbTelefon.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbTelefon.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -124,22 +123,11 @@
             this.Kunde_anlegen.UseVisualStyleBackColor = true;
             this.Kunde_anlegen.Click += new System.EventHandler(this.Kunde_anlegen_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(225, 204);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(171, 20);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
             // AddCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 316);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.Kunde_anlegen);
             this.Controls.Add(this.tbTelefon);
             this.Controls.Add(this.tbName);
@@ -159,6 +147,5 @@
         private MetroFramework.Controls.MetroTextBox tbName;
         private MetroFramework.Controls.MetroTextBox tbTelefon;
         private System.Windows.Forms.Button Kunde_anlegen;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
