@@ -19,6 +19,14 @@ namespace Kundenkartei
 
         private void FillCustomerList()
         {
+            Kunde kunde = this.Tag as Kunde;
+            tbKundenNr.Text = kunde.KundenNr.ToString();
+            tbName.Text = kunde.Name.ToString();
+            tbTelefon.Text = kunde.Telefon.ToString();
+            tbAdresse.Text = kunde.Strasse.ToString();
+            tbPlz.Text = kunde.Plz.ToString();
+            tbStadt.Text = kunde.Stadt.ToString();
+            tbMail.Text = kunde.Email.ToString();
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
             table = SqliteDataAccess.GetKundenHistorie(this.Tag as Kunde);
@@ -115,8 +123,16 @@ namespace Kundenkartei
             }
             else
             {
-                MessageBox.Show("Bitte einen Kunden auswählen");
+                MessageBox.Show("Bitte einen Termin auswählen");
             }
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
+            SqliteDataAccess.UpdateKunde(k);
+            MessageBox.Show("Änderungen gespeichert.");          
+            this.Close();
         }
     }
 }

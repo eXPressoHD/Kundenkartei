@@ -35,18 +35,19 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker1.Location = new System.Drawing.Point(111, 78);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.dateTimePicker1.Location = new System.Drawing.Point(133, 79);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(194, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(281, 26);
             this.dateTimePicker1.TabIndex = 12;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -61,10 +62,10 @@
             this.columnHeader5,
             this.columnHeader6});
             this.metroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.metroListView1.Location = new System.Drawing.Point(23, 117);
+            this.metroListView1.Location = new System.Drawing.Point(23, 211);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
-            this.metroListView1.Size = new System.Drawing.Size(769, 397);
+            this.metroListView1.Size = new System.Drawing.Size(839, 429);
             this.metroListView1.TabIndex = 11;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.View = System.Windows.Forms.View.Details;
@@ -94,44 +95,45 @@
             this.columnHeader5.Text = "Dienstleistung";
             this.columnHeader5.Width = 126;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Bei";
+            // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(24, 78);
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.Location = new System.Drawing.Point(23, 79);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(104, 25);
             this.metroLabel1.TabIndex = 13;
             this.metroLabel1.Text = "Termine am:";
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(582, 64);
+            this.metroButton1.Location = new System.Drawing.Point(23, 156);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(102, 34);
+            this.metroButton1.Size = new System.Drawing.Size(114, 49);
             this.metroButton1.TabIndex = 14;
-            this.metroButton1.Text = "Termin zuweisen";
+            this.metroButton1.Text = "Neuer Termin";
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(690, 64);
+            this.metroButton2.Location = new System.Drawing.Point(143, 156);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(102, 34);
+            this.metroButton2.Size = new System.Drawing.Size(114, 49);
             this.metroButton2.TabIndex = 15;
             this.metroButton2.Text = "Termin ändern";
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Bei";
-            // 
             // NewAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 537);
+            this.ClientSize = new System.Drawing.Size(885, 663);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.metroLabel1);

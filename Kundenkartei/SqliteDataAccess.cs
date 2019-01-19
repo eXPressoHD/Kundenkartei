@@ -193,9 +193,13 @@ namespace Kundenkartei
             using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
             {
                 con.Open();
-                SQLiteCommand insertSQL = new SQLiteCommand("INSERT INTO Kunden (Name, Telefon) VALUES (@name, @telefon)", con);
+                SQLiteCommand insertSQL = new SQLiteCommand("INSERT INTO Kunden (Name, Telefon, Strasse, PLZ, Stadt, Email) VALUES (@name, @telefon, @strasse, @plz, @stadt, @email)", con);
                 insertSQL.Parameters.AddWithValue("@name", kunde.Name);
                 insertSQL.Parameters.AddWithValue("@telefon", kunde.Telefon);
+                insertSQL.Parameters.AddWithValue("@strasse", kunde.Strasse);
+                insertSQL.Parameters.AddWithValue("@plz", kunde.Plz);
+                insertSQL.Parameters.AddWithValue("@stadt", kunde.Stadt);
+                insertSQL.Parameters.AddWithValue("@email", kunde.Email);
                 lastRow = con.LastInsertRowId;
                 try
                 {
@@ -312,10 +316,14 @@ namespace Kundenkartei
             using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
             {
                 con.Open();
-                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon WHERE KundenNr = @kundenNr", con);
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon, Strasse = @strasse, PLZ = @plz, Stadt = @stadt, Email = @email WHERE KundenNr = @kundenNr", con);
                 insertSQL.Parameters.AddWithValue("@kundenNr", kunde.KundenNr);
                 insertSQL.Parameters.AddWithValue("@name", kunde.Name);
                 insertSQL.Parameters.AddWithValue("@telefon", kunde.Telefon);
+                insertSQL.Parameters.AddWithValue("@strasse", kunde.Strasse);
+                insertSQL.Parameters.AddWithValue("@plz", kunde.Plz);
+                insertSQL.Parameters.AddWithValue("@stadt", kunde.Stadt);
+                insertSQL.Parameters.AddWithValue("@email", kunde.Email);
                 lastRow = con.LastInsertRowId;
                 try
                 {
@@ -338,6 +346,25 @@ namespace Kundenkartei
                 SQLiteCommand insertSQL = new SQLiteCommand("DELETE FROM Kunden WHERE KundenNr = @kundenNr", con);
                 insertSQL.Parameters.AddWithValue("@kundenNr", kunde.KundenNr);
                 lastRow = con.LastInsertRowId;
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
+            }
+        }
+
+        public static void DeleteTermin(Termin termin)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
+            {
+                con.Open();
+                SQLiteCommand insertSQL = new SQLiteCommand("DELETE FROM Termine WHERE TerminNr = @terminNr", con);
+                insertSQL.Parameters.AddWithValue("@terminNr", termin.TerminNr);
                 try
                 {
                     insertSQL.ExecuteNonQuery();

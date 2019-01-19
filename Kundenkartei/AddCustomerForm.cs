@@ -19,7 +19,7 @@ namespace Kundenkartei
 
         private void Kunde_anlegen_Click(object sender, EventArgs e)
         {
-            Kunde kunde = new Kunde(Convert.ToInt32(SqliteDataAccess.GetLatestKundenNr()),tbName.Text, tbTelefon.Text);
+            Kunde kunde = new Kunde(Convert.ToInt32(SqliteDataAccess.GetLatestKundenNr()),tbName.Text, tbTelefon.Text, tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
             kunde.WriteKundeToDB();
             this.Close();
         }

@@ -60,6 +60,10 @@ namespace Kundenkartei
                 item.SubItems.Add(GetDienstLeistung(s));
                 item.SubItems.Add(GetMitarbeiter(s));
                 metroListView1.Items.Add(item);
+                /*foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
+                {
+                    column.Width = -2;
+                }*/
             }
         }
 
@@ -139,12 +143,22 @@ namespace Kundenkartei
             {
                 try
                 {
-                    int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
-                    DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
-                    SqliteDataAccess.DeleteKunde(k);
-                    metroListView1.Items.Clear();
-                    FillCustomerList();
+                    DialogResult dialogResult = MessageBox.Show("Kunde wirklich löschen?", "Information", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
+                        DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
+                        Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
+                        SqliteDataAccess.DeleteKunde(k);
+                        metroListView1.Items.Clear();
+                        FillCustomerList();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        metroListView1.Items.Clear();
+                        FillCustomerList();
+                    }
+                    
                 }catch(Exception ex)
                 {
                     _logger.Error(ex);
@@ -201,8 +215,29 @@ namespace Kundenkartei
 
         private void metroButton3_Click_1(object sender, EventArgs e)
         {
-            NewAppointment neuerTermin = new NewAppointment();
-            neuerTermin.Show();
+            
+
+            if (metroListView1.CheckedItems.Count == 1)
+            {
+                try
+                {
+                    int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
+                    DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
+                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString(), kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(), kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
+                    NewAppointment neuerTermin = new NewAppointment();
+                    neuerTermin.Tag = k;
+                    neuerTermin.Show();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
+            }
+            else
+            {
+                NewAppointment neuerTermin = new NewAppointment();
+                neuerTermin.Show();
+            }
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -218,13 +253,40 @@ namespace Kundenkartei
                 {
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
+                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString(), kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(), kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
                     CustomerHistory ch = new CustomerHistory();
                     ch.Tag = k;
                     ch.Show();
                 }
                 catch (Exception ex)
                 {
+                    _logger.Error(ex);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte einen Kunden auswählen");
+            }
+        }
+
+        private void metroButton5_Click(object sender, EventArgs e)
+        {
+            if (metroListView1.CheckedItems.Count == 1)
+            {
+                try
+                {
+                    int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
+                    DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
+                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
+                    DataTable termin = SqliteDataAccess.GetKundenHistorie(k);
+                    Termin t = new Termin(Convert.ToInt32(termin.Rows[0]["TerminNr"]), termin.Rows[0]["Datum"].ToString(), termin.Rows[0]["Dienstleistung"].ToString(), termin.Rows[0]["Mitarbeiter"].ToString(), Convert.ToInt32(termin.Rows[0]["KundenNr"]));
+                    EditAppointment ea = new EditAppointment();
+                    ea.Tag = t;
+                    ea.Show();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("Kein Termin verfügbar");
                     _logger.Error(ex);
                 }
             }

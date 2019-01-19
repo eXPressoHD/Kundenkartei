@@ -40,6 +40,7 @@
             this.tbTerminNr = new MetroFramework.Controls.MetroTextBox();
             this.tbKundenNr = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // tbMitarbeiter
@@ -56,8 +57,9 @@
             this.tbMitarbeiter.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbMitarbeiter.CustomButton.UseSelectable = true;
             this.tbMitarbeiter.CustomButton.Visible = false;
+            this.tbMitarbeiter.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbMitarbeiter.Lines = new string[0];
-            this.tbMitarbeiter.Location = new System.Drawing.Point(142, 206);
+            this.tbMitarbeiter.Location = new System.Drawing.Point(192, 236);
             this.tbMitarbeiter.MaxLength = 32767;
             this.tbMitarbeiter.Name = "tbMitarbeiter";
             this.tbMitarbeiter.PasswordChar = '\0';
@@ -75,20 +77,23 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(35, 210);
+            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel4.Location = new System.Drawing.Point(26, 234);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(30, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(39, 25);
             this.metroLabel4.TabIndex = 27;
             this.metroLabel4.Text = "Bei:";
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.CustomFormat = "HH:mm:ss";
+            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.dateTimePicker2.CustomFormat = "HH:mm";
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(328, 134);
+            this.dateTimePicker2.Location = new System.Drawing.Point(475, 158);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(73, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(77, 26);
             this.dateTimePicker2.TabIndex = 26;
             // 
             // metroTextBox1
@@ -105,8 +110,9 @@
             this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTextBox1.CustomButton.UseSelectable = true;
             this.metroTextBox1.CustomButton.Visible = false;
+            this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(142, 171);
+            this.metroTextBox1.Location = new System.Drawing.Point(192, 197);
             this.metroTextBox1.MaxLength = 32767;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '\0';
@@ -123,35 +129,39 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker1.Location = new System.Drawing.Point(142, 134);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.dateTimePicker1.Location = new System.Drawing.Point(192, 159);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(180, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(277, 26);
             this.dateTimePicker1.TabIndex = 24;
             // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(35, 171);
+            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel2.Location = new System.Drawing.Point(26, 195);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(91, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(122, 25);
             this.metroLabel2.TabIndex = 23;
             this.metroLabel2.Text = "Dienstleistung:";
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(35, 134);
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.Location = new System.Drawing.Point(26, 159);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(51, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(67, 25);
             this.metroLabel1.TabIndex = 22;
             this.metroLabel1.Text = "Datum:";
             // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(35, 278);
+            this.metroButton3.Location = new System.Drawing.Point(26, 330);
             this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(121, 33);
+            this.metroButton3.Size = new System.Drawing.Size(132, 46);
             this.metroButton3.TabIndex = 29;
             this.metroButton3.Text = "Änderung speichern";
             this.metroButton3.UseSelectable = true;
@@ -160,9 +170,10 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(35, 63);
+            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel3.Location = new System.Drawing.Point(26, 87);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel3.Size = new System.Drawing.Size(86, 25);
             this.metroLabel3.TabIndex = 30;
             this.metroLabel3.Text = "TerminNr:";
             // 
@@ -180,8 +191,9 @@
             this.tbTerminNr.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbTerminNr.CustomButton.UseSelectable = true;
             this.tbTerminNr.CustomButton.Visible = false;
+            this.tbTerminNr.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbTerminNr.Lines = new string[0];
-            this.tbTerminNr.Location = new System.Drawing.Point(142, 59);
+            this.tbTerminNr.Location = new System.Drawing.Point(192, 89);
             this.tbTerminNr.MaxLength = 32767;
             this.tbTerminNr.Name = "tbTerminNr";
             this.tbTerminNr.PasswordChar = '\0';
@@ -211,8 +223,9 @@
             this.tbKundenNr.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbKundenNr.CustomButton.UseSelectable = true;
             this.tbKundenNr.CustomButton.Visible = false;
+            this.tbKundenNr.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbKundenNr.Lines = new string[0];
-            this.tbKundenNr.Location = new System.Drawing.Point(142, 95);
+            this.tbKundenNr.Location = new System.Drawing.Point(192, 125);
             this.tbKundenNr.MaxLength = 32767;
             this.tbKundenNr.Name = "tbKundenNr";
             this.tbKundenNr.PasswordChar = '\0';
@@ -231,17 +244,31 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(35, 99);
+            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel5.Location = new System.Drawing.Point(26, 123);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(71, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(94, 25);
             this.metroLabel5.TabIndex = 32;
             this.metroLabel5.Text = "KundenNr:";
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.metroButton1.Location = new System.Drawing.Point(164, 330);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(132, 46);
+            this.metroButton1.TabIndex = 34;
+            this.metroButton1.Text = "Termin löschen";
+            this.metroButton1.UseCustomBackColor = true;
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // EditAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 334);
+            this.ClientSize = new System.Drawing.Size(597, 398);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.tbKundenNr);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.tbTerminNr);
@@ -255,7 +282,7 @@
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
             this.Name = "EditAppointment";
-            this.Text = "EditAppointment";
+            this.Text = "Termin ändern";
             this.Load += new System.EventHandler(this.EditAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -276,5 +303,6 @@
         private MetroFramework.Controls.MetroTextBox tbTerminNr;
         private MetroFramework.Controls.MetroTextBox tbKundenNr;
         private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

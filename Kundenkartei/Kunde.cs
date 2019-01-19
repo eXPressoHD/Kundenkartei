@@ -11,6 +11,21 @@ namespace Kundenkartei
         public int KundenNr { get; set; }
         public string Name { get; set; }
         public string Telefon { get; set; }
+        public string Strasse { get; set; }
+        public string Plz { get; set; }
+        public string Stadt { get; set; }
+        public string Email { get; set; }
+
+        public Kunde(int kundenNr, string name, string telefon, string strasse, string plz, string stadt, string email)
+        {
+            KundenNr = kundenNr;
+            Name = name;
+            Telefon = telefon;
+            Strasse = strasse;
+            Plz = plz;
+            Stadt = stadt;
+            Email = email;
+        }
 
         public Kunde(int kundenNr, string name, string telefon)
         {

@@ -99,9 +99,19 @@ namespace Kundenkartei
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            CreateAppointment c = new CreateAppointment();
-            c.Tag = dateTimePicker1.Value;
-            c.Show();
+            if (this.Tag != null)
+            {
+                CreateAppointment c = new CreateAppointment();
+                c.Tag = dateTimePicker1.Value;
+                c.vorgelegt = this.Tag as Kunde;
+                c.Show();
+            } else
+            {
+                CreateAppointment c = new CreateAppointment();
+                c.Tag = dateTimePicker1.Value;
+                c.Show();
+            }
+            this.Close();
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
