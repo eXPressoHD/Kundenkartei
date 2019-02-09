@@ -51,16 +51,16 @@ namespace Kundenkartei
                 };
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-                item.SubItems.Add(GetDate(s)[ind]);
-                item.SubItems.Add(GetDienstLeistung(s));
-                item.SubItems.Add(GetMitarbeiter(s));
+                item.SubItems.Add(GetAdditionalInformation(s, "Datum")[ind]);
+                item.SubItems.Add(GetAdditionalInformation(s, "Dienstleistung")[ind]);
+                item.SubItems.Add(GetAdditionalInformation(s, "Mitarbeiter")[ind]);
                 metroListView1.Items.Add(item);
                 ind++;
             }
         }
 
         //TODO: ändern dass er jede reihe durchgeht
-        private List<string> GetDate(Kunde s)
+        private List<string> GetAdditionalInformation(Kunde s, string colName)
         {
             List<String> li = new List<string>();
             DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
@@ -68,37 +68,10 @@ namespace Kundenkartei
             {
                 foreach (DataRow row in tab.Rows)
                 {
-                    li.Add(row["Datum"].ToString());
+                    li.Add(row[colName].ToString());
                 }
             }
-
             return li;
-        }
-
-        private string GetDienstLeistung(Kunde s)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0].ItemArray[1].ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GetMitarbeiter(Kunde s)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0].ItemArray[2].ToString();
-            }
-            else
-            {
-                return "";
-            }
         }
 
         private void CustomerHistory_Activated(object sender, EventArgs e)
