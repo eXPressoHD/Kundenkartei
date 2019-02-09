@@ -44,6 +44,7 @@
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroButton5 = new MetroFramework.Controls.MetroButton();
+            this.TodayDatetime = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // CreateKunde
@@ -213,11 +214,21 @@
             this.metroButton5.UseSelectable = true;
             this.metroButton5.Click += new System.EventHandler(this.metroButton5_Click);
             // 
+            // TodayDatetime
+            // 
+            this.TodayDatetime.AutoSize = true;
+            this.TodayDatetime.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.TodayDatetime.Location = new System.Drawing.Point(802, 29);
+            this.TodayDatetime.Name = "TodayDatetime";
+            this.TodayDatetime.Size = new System.Drawing.Size(0, 0);
+            this.TodayDatetime.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
+            this.Controls.Add(this.TodayDatetime);
             this.Controls.Add(this.metroButton5);
             this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.metroButton3);
@@ -256,6 +267,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private MetroFramework.Controls.MetroButton metroButton4;
         private MetroFramework.Controls.MetroButton metroButton5;
+        private MetroFramework.Controls.MetroLabel TodayDatetime;
     }
 }
 

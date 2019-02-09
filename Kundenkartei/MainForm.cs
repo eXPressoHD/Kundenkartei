@@ -17,7 +17,9 @@ namespace Kundenkartei
         public MainForm()
         {
             InitializeComponent();
+            TodayDatetime.Text = DateTime.Now.ToString("dd.MM.yyyy");
             metroCheckBoxTermineHeute.Checked = true;
+            
         }
 
         private void CreateKunde_Click(object sender, EventArgs e)
@@ -48,6 +50,10 @@ namespace Kundenkartei
                 kundenListe.Add(k);
             }
 
+            DateTime date = Convert.ToDateTime(TodayDatetime.Text);
+            string strDate = date.ToString("dd.MM.yyyy");
+            string sqlFormat = String.Format("{0}%", strDate);
+
             foreach (Kunde s in kundenListe)
             {
                 ListViewItem item = new ListViewItem(s.Name)
@@ -56,9 +62,9 @@ namespace Kundenkartei
                 };
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-                item.SubItems.Add(GetDate(s));
-                item.SubItems.Add(GetDienstLeistung(s));
-                item.SubItems.Add(GetMitarbeiter(s));
+                item.SubItems.Add(GetDate(s, sqlFormat));
+                item.SubItems.Add(GetDienstLeistung(s, sqlFormat));
+                item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
                 metroListView1.Items.Add(item);
                 /*foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
@@ -67,9 +73,9 @@ namespace Kundenkartei
             }
         }
 
-        private string GetDate(Kunde s)
+        private string GetDate(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[0].ToString();
@@ -80,9 +86,9 @@ namespace Kundenkartei
             }
         }
 
-        private string GetDienstLeistung(Kunde s)
+        private string GetDienstLeistung(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[1].ToString();
@@ -93,9 +99,9 @@ namespace Kundenkartei
             }
         }
 
-        private string GetMitarbeiter(Kunde s)
+        private string GetMitarbeiter(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[2].ToString();
@@ -141,31 +147,11 @@ namespace Kundenkartei
         {
             if (metroListView1.CheckedItems.Count == 1)
             {
-                try
-                {
-                    DialogResult dialogResult = MessageBox.Show("Kunde wirklich löschen?", "Information", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
-                        DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                        Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
-                        SqliteDataAccess.DeleteKunde(k);
-                        metroListView1.Items.Clear();
-                        FillCustomerList();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        metroListView1.Items.Clear();
-                        FillCustomerList();
-                    }
-                    
-                }catch(Exception ex)
-                {
-                    _logger.Error(ex);
-                }
-            }
-            else
-            {
+                string kundenNr = metroListView1.CheckedItems[0].SubItems[1].Text;
+                SqliteDataAccess.DeleteKunde(kundenNr);
+                metroListView1.Items.Clear();
+                FillCustomerList();
+            } else {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
         }

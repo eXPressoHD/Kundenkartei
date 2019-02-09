@@ -29,7 +29,7 @@ namespace Kundenkartei
             tbMail.Text = kunde.Email.ToString();
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
-            table = SqliteDataAccess.GetKundenHistorie(this.Tag as Kunde);
+            table = SqliteDataAccess.GetKundenHistorie(kunde);
             foreach (DataRow row in table.Rows)
             {
                 Kunde k = new Kunde
@@ -40,38 +40,44 @@ namespace Kundenkartei
                 };
                 kundenListe.Add(k);
             }
-
+            int ind = 0;
             foreach (Kunde s in kundenListe)
             {
+
+                
                 ListViewItem item = new ListViewItem(s.Name)
                 {
                     Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Regular)
                 };
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-                item.SubItems.Add(GetDate(s));
+                item.SubItems.Add(GetDate(s)[ind]);
                 item.SubItems.Add(GetDienstLeistung(s));
                 item.SubItems.Add(GetMitarbeiter(s));
                 metroListView1.Items.Add(item);
+                ind++;
             }
         }
 
-        private string GetDate(Kunde s)
+        //TODO: ändern dass er jede reihe durchgeht
+        private List<string> GetDate(Kunde s)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            List<String> li = new List<string>();
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
             if (tab.Rows.Count > 0)
             {
-                return tab.Rows[0].ItemArray[0].ToString();
+                foreach (DataRow row in tab.Rows)
+                {
+                    li.Add(row["Datum"].ToString());
+                }
             }
-            else
-            {
-                return "";
-            }
+
+            return li;
         }
 
         private string GetDienstLeistung(Kunde s)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[1].ToString();
@@ -84,7 +90,7 @@ namespace Kundenkartei
 
         private string GetMitarbeiter(Kunde s)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[2].ToString();

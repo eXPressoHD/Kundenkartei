@@ -31,6 +31,9 @@ namespace Kundenkartei
                 k.Telefon = row["Telefon"].ToString();
                 kundenListe.Add(k);
             }
+            string date = dateTimePicker1.Value.ToString("dd.MM.yyyy");
+
+            string sqlVal = String.Format("{0}%", date);
 
             foreach (Kunde s in kundenListe)
             {
@@ -39,18 +42,20 @@ namespace Kundenkartei
                     Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Regular)
                 };
                 
+
+
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-                item.SubItems.Add(GetDate(s));
-                item.SubItems.Add(GetDienstLeistung(s));
-                item.SubItems.Add(GetMitarbeiter(s));
+                item.SubItems.Add(GetDate(s, sqlVal));
+                item.SubItems.Add(GetDienstLeistung(s, sqlVal));
+                item.SubItems.Add(GetMitarbeiter(s, sqlVal));
                 metroListView1.Items.Add(item);
             }
         }
 
-        private string GetDate(Kunde s)
+        private string GetDate(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[0].ToString();
@@ -60,9 +65,9 @@ namespace Kundenkartei
             }
         }    
         
-        private string GetDienstLeistung(Kunde s)
+        private string GetDienstLeistung(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[1].ToString();
@@ -72,9 +77,9 @@ namespace Kundenkartei
             }
         }
 
-        private string GetMitarbeiter(Kunde s)
+        private string GetMitarbeiter(Kunde s, string date)
         {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s);
+            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[2].ToString();
