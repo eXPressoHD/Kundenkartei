@@ -40,11 +40,12 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClearSearch = new MetroFramework.Controls.MetroButton();
-            this.metroCheckBoxTermineHeute = new MetroFramework.Controls.MetroCheckBox();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroButton5 = new MetroFramework.Controls.MetroButton();
             this.TodayDatetime = new MetroFramework.Controls.MetroLabel();
+            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.SuspendLayout();
             // 
             // CreateKunde
@@ -173,17 +174,6 @@
             this.ClearSearch.UseSelectable = true;
             this.ClearSearch.Click += new System.EventHandler(this.ClearSearch_Click);
             // 
-            // metroCheckBoxTermineHeute
-            // 
-            this.metroCheckBoxTermineHeute.AutoSize = true;
-            this.metroCheckBoxTermineHeute.Location = new System.Drawing.Point(864, 268);
-            this.metroCheckBoxTermineHeute.Name = "metroCheckBoxTermineHeute";
-            this.metroCheckBoxTermineHeute.Size = new System.Drawing.Size(99, 15);
-            this.metroCheckBoxTermineHeute.TabIndex = 9;
-            this.metroCheckBoxTermineHeute.Text = "Termine heute";
-            this.metroCheckBoxTermineHeute.UseSelectable = true;
-            this.metroCheckBoxTermineHeute.CheckedChanged += new System.EventHandler(this.metroCheckBoxTermineHeute_CheckedChanged);
-            // 
             // metroButton3
             // 
             this.metroButton3.Location = new System.Drawing.Point(802, 63);
@@ -223,16 +213,39 @@
             this.TodayDatetime.Size = new System.Drawing.Size(0, 0);
             this.TodayDatetime.TabIndex = 14;
             // 
+            // metroRadioButton1
+            // 
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(762, 268);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(99, 15);
+            this.metroRadioButton1.TabIndex = 15;
+            this.metroRadioButton1.Text = "Termine heute";
+            this.metroRadioButton1.UseSelectable = true;
+            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
+            // 
+            // metroRadioButton2
+            // 
+            this.metroRadioButton2.AutoSize = true;
+            this.metroRadioButton2.Location = new System.Drawing.Point(878, 268);
+            this.metroRadioButton2.Name = "metroRadioButton2";
+            this.metroRadioButton2.Size = new System.Drawing.Size(85, 15);
+            this.metroRadioButton2.TabIndex = 16;
+            this.metroRadioButton2.Text = "Kundenliste";
+            this.metroRadioButton2.UseSelectable = true;
+            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
+            this.Controls.Add(this.metroRadioButton2);
+            this.Controls.Add(this.metroRadioButton1);
             this.Controls.Add(this.TodayDatetime);
             this.Controls.Add(this.metroButton5);
             this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.metroButton3);
-            this.Controls.Add(this.metroCheckBoxTermineHeute);
             this.Controls.Add(this.ClearSearch);
             this.Controls.Add(this.metroListView1);
             this.Controls.Add(this.metroButton2);
@@ -262,12 +275,13 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private MetroFramework.Controls.MetroButton ClearSearch;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBoxTermineHeute;
         private MetroFramework.Controls.MetroButton metroButton3;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private MetroFramework.Controls.MetroButton metroButton4;
         private MetroFramework.Controls.MetroButton metroButton5;
         private MetroFramework.Controls.MetroLabel TodayDatetime;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
     }
 }
 

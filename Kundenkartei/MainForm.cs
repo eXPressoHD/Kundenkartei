@@ -18,8 +18,7 @@ namespace Kundenkartei
         {
             InitializeComponent();
             TodayDatetime.Text = DateTime.Now.ToString("dd.MM.yyyy");
-            metroCheckBoxTermineHeute.Checked = true;
-            
+            metroRadioButton1.Checked = true;
         }
 
         private void CreateKunde_Click(object sender, EventArgs e)
@@ -32,7 +31,7 @@ namespace Kundenkartei
         {
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
-            if (!metroCheckBoxTermineHeute.Checked)
+            if (!metroRadioButton1.Checked)
             {
                 table = SqliteDataAccess.GetKundenData();
             } else
@@ -280,6 +279,18 @@ namespace Kundenkartei
             {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
+        }
+
+        private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            metroListView1.Items.Clear();
+            FillCustomerList();
+        }
+
+        private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            metroListView1.Items.Clear();
+            FillCustomerList();
         }
     }
 }
