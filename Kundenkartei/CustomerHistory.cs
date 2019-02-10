@@ -59,7 +59,6 @@ namespace Kundenkartei
             }
         }
 
-        //TODO: ändern dass er jede reihe durchgeht
         private List<string> GetAdditionalInformation(Kunde s, string colName)
         {
             List<String> li = new List<string>();
@@ -86,12 +85,13 @@ namespace Kundenkartei
             {
                 try
                 {
+                    int id = metroListView1.Items.IndexOf(metroListView1.CheckedItems[0]);
+                    EditAppointment ea = new EditAppointment();
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
                     Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
                     DataTable termin = SqliteDataAccess.GetKundenHistorie(k);
-                    Termin t = new Termin(Convert.ToInt32(termin.Rows[0]["TerminNr"]), termin.Rows[0]["Datum"].ToString(), termin.Rows[0]["Dienstleistung"].ToString(), termin.Rows[0]["Mitarbeiter"].ToString(), Convert.ToInt32(termin.Rows[0]["KundenNr"]));
-                    EditAppointment ea = new EditAppointment();
+                    Termin t = new Termin(Convert.ToInt32(termin.Rows[id]["TerminNr"]), termin.Rows[id]["Datum"].ToString(), termin.Rows[id]["Dienstleistung"].ToString(), termin.Rows[id]["Mitarbeiter"].ToString(), Convert.ToInt32(termin.Rows[id]["KundenNr"]));
                     ea.Tag = t;
                     ea.Show();
                 }

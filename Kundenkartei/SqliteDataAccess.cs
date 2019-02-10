@@ -84,7 +84,7 @@ namespace Kundenkartei
                     cnn.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                     {
-                        cmd.CommandText = "SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr ORDER BY t.Datum asc";//order by termin sysdate...
+                        cmd.CommandText = "SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr ORDER BY t.Datum desc";//order by termin sysdate...
                         cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
