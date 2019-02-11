@@ -116,6 +116,9 @@
             // 
             // metroListView1
             // 
+            this.metroListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroListView1.CheckBoxes = true;
             this.metroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
@@ -133,6 +136,7 @@
             this.metroListView1.TabIndex = 7;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.View = System.Windows.Forms.View.Details;
+            this.metroListView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.metroListView1_ItemChecked);
             // 
             // columnHeader1
             // 
@@ -176,6 +180,7 @@
             // 
             // metroButton3
             // 
+            this.metroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButton3.Location = new System.Drawing.Point(802, 63);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(161, 49);
@@ -196,6 +201,7 @@
             // 
             // metroButton5
             // 
+            this.metroButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButton5.Location = new System.Drawing.Point(802, 118);
             this.metroButton5.Name = "metroButton5";
             this.metroButton5.Size = new System.Drawing.Size(161, 48);
@@ -206,15 +212,18 @@
             // 
             // TodayDatetime
             // 
+            this.TodayDatetime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TodayDatetime.AutoSize = true;
             this.TodayDatetime.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.TodayDatetime.Location = new System.Drawing.Point(802, 29);
+            this.TodayDatetime.Location = new System.Drawing.Point(877, 25);
             this.TodayDatetime.Name = "TodayDatetime";
-            this.TodayDatetime.Size = new System.Drawing.Size(0, 0);
+            this.TodayDatetime.Size = new System.Drawing.Size(86, 25);
             this.TodayDatetime.TabIndex = 14;
+            this.TodayDatetime.Text = "01.01.2000";
             // 
             // metroRadioButton1
             // 
+            this.metroRadioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton1.AutoSize = true;
             this.metroRadioButton1.Location = new System.Drawing.Point(762, 268);
             this.metroRadioButton1.Name = "metroRadioButton1";
@@ -226,6 +235,7 @@
             // 
             // metroRadioButton2
             // 
+            this.metroRadioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton2.AutoSize = true;
             this.metroRadioButton2.Location = new System.Drawing.Point(878, 268);
             this.metroRadioButton2.Name = "metroRadioButton2";

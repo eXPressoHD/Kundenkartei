@@ -18,7 +18,8 @@ namespace Kundenkartei
         {
             InitializeComponent();
             TodayDatetime.Text = DateTime.Now.ToString("dd.MM.yyyy");
-            metroRadioButton1.Checked = true;
+            metroRadioButton1.Checked = true;            
+            metroListView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
         }
 
         private void CreateKunde_Click(object sender, EventArgs e)
@@ -55,20 +56,22 @@ namespace Kundenkartei
 
             foreach (Kunde s in kundenListe)
             {
+
                 ListViewItem item = new ListViewItem(s.Name)
                 {
-                    Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Regular)
+                    Font = new Font(new FontFamily("Microsoft Sans Serif"), 13.0f, FontStyle.Regular)                    
                 };
+                
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
                 item.SubItems.Add(GetDate(s, sqlFormat));
                 item.SubItems.Add(GetDienstLeistung(s, sqlFormat));
                 item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
                 metroListView1.Items.Add(item);
-                /*foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
+                foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
                     column.Width = -2;
-                }*/
+                }
             }
         }
 
@@ -122,9 +125,9 @@ namespace Kundenkartei
         private void metroButton1_Click(object sender, EventArgs e)
         {
             if (metroListView1.CheckedItems.Count == 1)
-            {
+            {                
                 try
-                {
+                {                    
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
                     EditCustomerForm form = new EditCustomerForm();
@@ -291,6 +294,18 @@ namespace Kundenkartei
         {
             metroListView1.Items.Clear();
             FillCustomerList();
+        }
+
+        private void metroListView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            ListViewItem item = e.Item as ListViewItem;
+            if (item.Checked)
+            { 
+                item.BackColor = Color.LightGray;
+            } else
+            {
+                item.BackColor = Color.White;
+            }
         }
     }
 }
