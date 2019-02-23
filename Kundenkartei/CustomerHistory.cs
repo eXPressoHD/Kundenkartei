@@ -27,6 +27,7 @@ namespace Kundenkartei
             tbPlz.Text = kunde.Plz.ToString();
             tbStadt.Text = kunde.Stadt.ToString();
             tbMail.Text = kunde.Email.ToString();
+            tbGeburtstag.Text = kunde.Geburtstag.ToString();
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
             table = SqliteDataAccess.GetKundenHistorie(kunde);
@@ -108,7 +109,7 @@ namespace Kundenkartei
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
+            Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbGeburtstag.Text ,tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
             SqliteDataAccess.UpdateKunde(k);
             MessageBox.Show("Änderungen gespeichert.");          
             this.Close();

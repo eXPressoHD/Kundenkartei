@@ -53,6 +53,8 @@
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbGeburtstag = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -121,7 +123,7 @@
             // 
             // 
             this.tbMail.CustomButton.Image = null;
-            this.tbMail.CustomButton.Location = new System.Drawing.Point(149, 1);
+            this.tbMail.CustomButton.Location = new System.Drawing.Point(202, 1);
             this.tbMail.CustomButton.Name = "";
             this.tbMail.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbMail.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -162,7 +164,7 @@
             // 
             // 
             this.tbStadt.CustomButton.Image = null;
-            this.tbStadt.CustomButton.Location = new System.Drawing.Point(149, 1);
+            this.tbStadt.CustomButton.Location = new System.Drawing.Point(202, 1);
             this.tbStadt.CustomButton.Name = "";
             this.tbStadt.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbStadt.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -203,7 +205,7 @@
             // 
             // 
             this.tbPlz.CustomButton.Image = null;
-            this.tbPlz.CustomButton.Location = new System.Drawing.Point(68, 1);
+            this.tbPlz.CustomButton.Location = new System.Drawing.Point(93, 1);
             this.tbPlz.CustomButton.Name = "";
             this.tbPlz.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbPlz.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -244,7 +246,7 @@
             // 
             // 
             this.tbAdresse.CustomButton.Image = null;
-            this.tbAdresse.CustomButton.Location = new System.Drawing.Point(149, 1);
+            this.tbAdresse.CustomButton.Location = new System.Drawing.Point(202, 1);
             this.tbAdresse.CustomButton.Name = "";
             this.tbAdresse.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbAdresse.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -285,7 +287,7 @@
             // 
             // 
             this.tbTelefon.CustomButton.Image = null;
-            this.tbTelefon.CustomButton.Location = new System.Drawing.Point(124, 1);
+            this.tbTelefon.CustomButton.Location = new System.Drawing.Point(142, 1);
             this.tbTelefon.CustomButton.Name = "";
             this.tbTelefon.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbTelefon.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -326,7 +328,7 @@
             // 
             // 
             this.tbName.CustomButton.Image = null;
-            this.tbName.CustomButton.Location = new System.Drawing.Point(124, 1);
+            this.tbName.CustomButton.Location = new System.Drawing.Point(142, 1);
             this.tbName.CustomButton.Name = "";
             this.tbName.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -367,7 +369,7 @@
             // 
             // 
             this.tbKundenNr.CustomButton.Image = null;
-            this.tbKundenNr.CustomButton.Location = new System.Drawing.Point(124, 1);
+            this.tbKundenNr.CustomButton.Location = new System.Drawing.Point(142, 1);
             this.tbKundenNr.CustomButton.Name = "";
             this.tbKundenNr.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.tbKundenNr.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -415,6 +417,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbGeburtstag);
+            this.groupBox1.Controls.Add(this.metroLabel8);
             this.groupBox1.Controls.Add(this.tbTelefon);
             this.groupBox1.Controls.Add(this.metroButton1);
             this.groupBox1.Controls.Add(this.metroLabel1);
@@ -447,6 +451,47 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Termine";
+            // 
+            // tbGeburtstag
+            // 
+            // 
+            // 
+            // 
+            this.tbGeburtstag.CustomButton.Image = null;
+            this.tbGeburtstag.CustomButton.Location = new System.Drawing.Point(142, 1);
+            this.tbGeburtstag.CustomButton.Name = "";
+            this.tbGeburtstag.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbGeburtstag.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbGeburtstag.CustomButton.TabIndex = 1;
+            this.tbGeburtstag.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbGeburtstag.CustomButton.UseSelectable = true;
+            this.tbGeburtstag.CustomButton.Visible = false;
+            this.tbGeburtstag.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.tbGeburtstag.Lines = new string[0];
+            this.tbGeburtstag.Location = new System.Drawing.Point(181, 171);
+            this.tbGeburtstag.MaxLength = 32767;
+            this.tbGeburtstag.Name = "tbGeburtstag";
+            this.tbGeburtstag.PasswordChar = '\0';
+            this.tbGeburtstag.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbGeburtstag.SelectedText = "";
+            this.tbGeburtstag.SelectionLength = 0;
+            this.tbGeburtstag.SelectionStart = 0;
+            this.tbGeburtstag.ShortcutsEnabled = true;
+            this.tbGeburtstag.Size = new System.Drawing.Size(164, 23);
+            this.tbGeburtstag.TabIndex = 35;
+            this.tbGeburtstag.UseSelectable = true;
+            this.tbGeburtstag.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbGeburtstag.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel8.Location = new System.Drawing.Point(81, 169);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(100, 25);
+            this.metroLabel8.TabIndex = 36;
+            this.metroLabel8.Text = "Geburtstag:";
             // 
             // CustomerHistory
             // 
@@ -492,5 +537,7 @@
         private MetroFramework.Controls.MetroButton metroButton1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private MetroFramework.Controls.MetroTextBox tbGeburtstag;
+        private MetroFramework.Controls.MetroLabel metroLabel8;
     }
 }

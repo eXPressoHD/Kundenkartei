@@ -41,6 +41,8 @@
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.tbMail = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.tbGeburtstag = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -151,7 +153,7 @@
             this.tbAdresse.CustomButton.Visible = false;
             this.tbAdresse.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbAdresse.Lines = new string[0];
-            this.tbAdresse.Location = new System.Drawing.Point(186, 168);
+            this.tbAdresse.Location = new System.Drawing.Point(186, 205);
             this.tbAdresse.MaxLength = 32767;
             this.tbAdresse.Name = "tbAdresse";
             this.tbAdresse.PasswordChar = '\0';
@@ -170,7 +172,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel3.Location = new System.Drawing.Point(34, 166);
+            this.metroLabel3.Location = new System.Drawing.Point(34, 203);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(63, 25);
             this.metroLabel3.TabIndex = 6;
@@ -192,7 +194,7 @@
             this.tbPlz.CustomButton.Visible = false;
             this.tbPlz.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbPlz.Lines = new string[0];
-            this.tbPlz.Location = new System.Drawing.Point(186, 206);
+            this.tbPlz.Location = new System.Drawing.Point(186, 243);
             this.tbPlz.MaxLength = 32767;
             this.tbPlz.Name = "tbPlz";
             this.tbPlz.PasswordChar = '\0';
@@ -211,7 +213,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel4.Location = new System.Drawing.Point(34, 204);
+            this.metroLabel4.Location = new System.Drawing.Point(34, 241);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(45, 25);
             this.metroLabel4.TabIndex = 8;
@@ -233,7 +235,7 @@
             this.tbStadt.CustomButton.Visible = false;
             this.tbStadt.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbStadt.Lines = new string[0];
-            this.tbStadt.Location = new System.Drawing.Point(186, 244);
+            this.tbStadt.Location = new System.Drawing.Point(186, 281);
             this.tbStadt.MaxLength = 32767;
             this.tbStadt.Name = "tbStadt";
             this.tbStadt.PasswordChar = '\0';
@@ -252,7 +254,7 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel5.Location = new System.Drawing.Point(34, 242);
+            this.metroLabel5.Location = new System.Drawing.Point(34, 279);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(54, 25);
             this.metroLabel5.TabIndex = 10;
@@ -274,7 +276,7 @@
             this.tbMail.CustomButton.Visible = false;
             this.tbMail.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbMail.Lines = new string[0];
-            this.tbMail.Location = new System.Drawing.Point(186, 282);
+            this.tbMail.Location = new System.Drawing.Point(186, 319);
             this.tbMail.MaxLength = 32767;
             this.tbMail.Name = "tbMail";
             this.tbMail.PasswordChar = '\0';
@@ -293,17 +295,60 @@
             // 
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel6.Location = new System.Drawing.Point(34, 280);
+            this.metroLabel6.Location = new System.Drawing.Point(34, 317);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(57, 25);
             this.metroLabel6.TabIndex = 12;
             this.metroLabel6.Text = "Email:";
+            // 
+            // tbGeburtstag
+            // 
+            // 
+            // 
+            // 
+            this.tbGeburtstag.CustomButton.Image = null;
+            this.tbGeburtstag.CustomButton.Location = new System.Drawing.Point(149, 1);
+            this.tbGeburtstag.CustomButton.Name = "";
+            this.tbGeburtstag.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbGeburtstag.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbGeburtstag.CustomButton.TabIndex = 1;
+            this.tbGeburtstag.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbGeburtstag.CustomButton.UseSelectable = true;
+            this.tbGeburtstag.CustomButton.Visible = false;
+            this.tbGeburtstag.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.tbGeburtstag.Lines = new string[0];
+            this.tbGeburtstag.Location = new System.Drawing.Point(185, 166);
+            this.tbGeburtstag.MaxLength = 32767;
+            this.tbGeburtstag.Name = "tbGeburtstag";
+            this.tbGeburtstag.PasswordChar = '\0';
+            this.tbGeburtstag.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbGeburtstag.SelectedText = "";
+            this.tbGeburtstag.SelectionLength = 0;
+            this.tbGeburtstag.SelectionStart = 0;
+            this.tbGeburtstag.ShortcutsEnabled = true;
+            this.tbGeburtstag.Size = new System.Drawing.Size(171, 23);
+            this.tbGeburtstag.TabIndex = 14;
+            this.tbGeburtstag.UseSelectable = true;
+            this.tbGeburtstag.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbGeburtstag.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel7.Location = new System.Drawing.Point(33, 164);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(100, 25);
+            this.metroLabel7.TabIndex = 13;
+            this.metroLabel7.Text = "Geburtstag:";
             // 
             // AddCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 437);
+            this.Controls.Add(this.tbGeburtstag);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.tbMail);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.tbStadt);
@@ -339,5 +384,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroTextBox tbMail;
         private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroTextBox tbGeburtstag;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
     }
 }

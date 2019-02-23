@@ -74,6 +74,61 @@ namespace Kundenkartei
             return dt;
         }
 
+        public static DataTable GetCustomerTypes()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT DISTINCT Typ FROM Preisliste";
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetPriceList(string para)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Titel, Preis FROM Preisliste WHERE Typ = @typ";
+                        cmd.Parameters.AddWithValue("@typ", para);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
         public static DataTable GetKundenHistorie(Kunde k) //Alle Einträge eines Kunden
         {
             DataTable dt = new DataTable();
@@ -222,13 +277,14 @@ namespace Kundenkartei
             using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
             {
                 con.Open();
-                SQLiteCommand insertSQL = new SQLiteCommand("INSERT INTO Kunden (Name, Telefon, Strasse, PLZ, Stadt, Email) VALUES (@name, @telefon, @strasse, @plz, @stadt, @email)", con);
+                SQLiteCommand insertSQL = new SQLiteCommand("INSERT INTO Kunden (Name, Telefon, Strasse, PLZ, Stadt, Email, Geburtstag) VALUES (@name, @telefon, @strasse, @plz, @stadt, @email, @geb)", con);
                 insertSQL.Parameters.AddWithValue("@name", kunde.Name);
                 insertSQL.Parameters.AddWithValue("@telefon", kunde.Telefon);
                 insertSQL.Parameters.AddWithValue("@strasse", kunde.Strasse);
                 insertSQL.Parameters.AddWithValue("@plz", kunde.Plz);
                 insertSQL.Parameters.AddWithValue("@stadt", kunde.Stadt);
                 insertSQL.Parameters.AddWithValue("@email", kunde.Email);
+                insertSQL.Parameters.AddWithValue("@geb", kunde.Geburtstag);
                 lastRow = con.LastInsertRowId;
                 try
                 {
@@ -316,6 +372,34 @@ namespace Kundenkartei
             return kunden;
         }
 
+        public static DataTable GetKundenNotes(int kNr)
+        {
+            DataTable notes = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Notizen FROM Kunden WHERE KundenNr = @kundenNr";
+                        cmd.Parameters.AddWithValue("@kundenNr", kNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            notes.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return notes;
+        }
+
         public static int GetLatestKundenNr()
         {
             int rowId;
@@ -345,7 +429,7 @@ namespace Kundenkartei
             using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
             {
                 con.Open();
-                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon, Strasse = @strasse, PLZ = @plz, Stadt = @stadt, Email = @email WHERE KundenNr = @kundenNr", con);
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Name = @name , Telefon = @telefon, Strasse = @strasse, PLZ = @plz, Stadt = @stadt, Email = @email, Geburtstag = @geb, Notizen = @note WHERE KundenNr = @kundenNr", con);
                 insertSQL.Parameters.AddWithValue("@kundenNr", kunde.KundenNr);
                 insertSQL.Parameters.AddWithValue("@name", kunde.Name);
                 insertSQL.Parameters.AddWithValue("@telefon", kunde.Telefon);
@@ -353,6 +437,8 @@ namespace Kundenkartei
                 insertSQL.Parameters.AddWithValue("@plz", kunde.Plz);
                 insertSQL.Parameters.AddWithValue("@stadt", kunde.Stadt);
                 insertSQL.Parameters.AddWithValue("@email", kunde.Email);
+                insertSQL.Parameters.AddWithValue("@geb", kunde.Geburtstag);
+                insertSQL.Parameters.AddWithValue("@note", kunde.Notizen);
                 lastRow = con.LastInsertRowId;
                 try
                 {

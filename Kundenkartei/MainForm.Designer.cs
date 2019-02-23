@@ -46,6 +46,7 @@
             this.TodayDatetime = new MetroFramework.Controls.MetroLabel();
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroButton6 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // CreateKunde
@@ -245,11 +246,23 @@
             this.metroRadioButton2.UseSelectable = true;
             this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
             // 
+            // metroButton6
+            // 
+            this.metroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroButton6.Location = new System.Drawing.Point(190, 63);
+            this.metroButton6.Name = "metroButton6";
+            this.metroButton6.Size = new System.Drawing.Size(161, 49);
+            this.metroButton6.TabIndex = 17;
+            this.metroButton6.Text = "Notizen";
+            this.metroButton6.UseSelectable = true;
+            this.metroButton6.Click += new System.EventHandler(this.metroButton6_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
+            this.Controls.Add(this.metroButton6);
             this.Controls.Add(this.metroRadioButton2);
             this.Controls.Add(this.metroRadioButton1);
             this.Controls.Add(this.TodayDatetime);
@@ -292,6 +305,7 @@
         private MetroFramework.Controls.MetroLabel TodayDatetime;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
+        private MetroFramework.Controls.MetroButton metroButton6;
     }
 }
 

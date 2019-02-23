@@ -12,20 +12,21 @@ namespace Kundenkartei
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();        
+        private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public MainForm()
         {
             InitializeComponent();
             TodayDatetime.Text = DateTime.Now.ToString("dd.MM.yyyy");
-            metroRadioButton1.Checked = true;            
+            metroRadioButton1.Checked = false;
+            metroRadioButton2.Checked = true;
             metroListView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
         }
 
         private void CreateKunde_Click(object sender, EventArgs e)
         {
             AddCustomerForm kundenForm = new AddCustomerForm();
-            kundenForm.Show();            
+            kundenForm.Show();
         }
 
         private void FillCustomerList()
@@ -35,7 +36,8 @@ namespace Kundenkartei
             if (!metroRadioButton1.Checked)
             {
                 table = SqliteDataAccess.GetKundenData();
-            } else
+            }
+            else
             {
                 table = SqliteDataAccess.GetKundenDataToday();
             }
@@ -59,9 +61,9 @@ namespace Kundenkartei
 
                 ListViewItem item = new ListViewItem(s.Name)
                 {
-                    Font = new Font(new FontFamily("Microsoft Sans Serif"), 13.0f, FontStyle.Regular)                    
+                    Font = new Font(new FontFamily("Microsoft Sans Serif"), 13.0f, FontStyle.Regular)
                 };
-                
+
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
                 item.SubItems.Add(GetDate(s, sqlFormat));
@@ -70,7 +72,7 @@ namespace Kundenkartei
                 metroListView1.Items.Add(item);
                 foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
-                    column.Width = -2;
+                    //column.Width = -2;
                 }
             }
         }
@@ -125,9 +127,9 @@ namespace Kundenkartei
         private void metroButton1_Click(object sender, EventArgs e)
         {
             if (metroListView1.CheckedItems.Count == 1)
-            {                
+            {
                 try
-                {                    
+                {
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
                     EditCustomerForm form = new EditCustomerForm();
@@ -135,11 +137,13 @@ namespace Kundenkartei
                     form.TextBoxName.Text = kunde.Rows[0].ItemArray[1].ToString();
                     form.TextBoxTelefon.Text = kunde.Rows[0].ItemArray[2].ToString();
                     form.Show();
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.Error(ex);
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
@@ -153,41 +157,45 @@ namespace Kundenkartei
                 SqliteDataAccess.DeleteKunde(kundenNr);
                 metroListView1.Items.Clear();
                 FillCustomerList();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
         }
 
         private void tbKundenName_TextChanged(object sender, EventArgs e)
         {
-                if (tbKundenName.Text != "")
+            if (tbKundenName.Text != "")
+            {
+                for (int i = metroListView1.Items.Count - 1; i >= 0; i--)
                 {
-                    for (int i = metroListView1.Items.Count - 1; i >= 0; i--)
+                    var item = metroListView1.Items[i];
+                    if (item.Text.ToLower().Contains(tbKundenName.Text.ToLower()))
                     {
-                        var item = metroListView1.Items[i];
-                        if (item.Text.ToLower().Contains(tbKundenName.Text.ToLower()))
-                        {
-                            item.BackColor = SystemColors.Highlight;
-                            item.ForeColor = SystemColors.HighlightText;
-                        }
-                        else
-                        {
-                            metroListView1.Items.Remove(item);
-                        }
+                        item.BackColor = SystemColors.Highlight;
+                        item.ForeColor = SystemColors.HighlightText;
                     }
-                    if (metroListView1.SelectedItems.Count == 1)
+                    else
                     {
+                        metroListView1.Items.Remove(item);
+                    }
+                }
+                if (metroListView1.SelectedItems.Count == 1)
+                {
                     metroListView1.Focus();
-                    }
-                } else {
+                }
+            }
+            else
+            {
                 metroListView1.Items.Clear();
                 FillCustomerList();
-            }                   
+            }
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ClearSearch_Click(object sender, EventArgs e)
@@ -203,7 +211,7 @@ namespace Kundenkartei
 
         private void metroButton3_Click_1(object sender, EventArgs e)
         {
-            
+
 
             if (metroListView1.CheckedItems.Count == 1)
             {
@@ -241,7 +249,7 @@ namespace Kundenkartei
                 {
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString(), kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(), kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
+                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0]["Name"].ToString(), kunde.Rows[0]["Telefon"].ToString(), kunde.Rows[0]["Geburtstag"].ToString() ,kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(),kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
                     CustomerHistory ch = new CustomerHistory();
                     ch.Tag = k;
                     ch.Show();
@@ -300,11 +308,27 @@ namespace Kundenkartei
         {
             ListViewItem item = e.Item as ListViewItem;
             if (item.Checked)
-            { 
+            {
                 item.BackColor = Color.LightGray;
-            } else
+            }
+            else
             {
                 item.BackColor = Color.White;
+            }
+        }
+
+        private void metroButton6_Click(object sender, EventArgs e)
+        {
+            if (metroListView1.CheckedItems.Count == 1)
+            {
+                int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
+                ShowCustomerNotes n = new ShowCustomerNotes();
+                n.Tag = kundenNr;
+                n.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bitte einen Kunden auswählen");
             }
         }
     }
