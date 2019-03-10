@@ -18,6 +18,34 @@ namespace Kundenkartei
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
+        public static DataTable GetKundenBirthday(Kunde k)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Geburtstag FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
         public static DataTable GetKundenData()
         {
             DataTable dt = new DataTable();

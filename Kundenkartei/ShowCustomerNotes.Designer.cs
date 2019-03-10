@@ -28,33 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowCustomerNotes));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.customerTypeChoose = new MetroFramework.Controls.MetroComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.metroButton6 = new MetroFramework.Controls.MetroButton();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.labName = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.labKundenNr = new MetroFramework.Controls.MetroLabel();
+            this.btnPrint = new MetroFramework.Controls.MetroButton();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.richTextBoxToday = new System.Windows.Forms.RichTextBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.richTextBox1.Location = new System.Drawing.Point(23, 148);
+            this.richTextBox1.Location = new System.Drawing.Point(23, 170);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(457, 528);
+            this.richTextBox1.Size = new System.Drawing.Size(457, 263);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // customerTypeChoose
             // 
             this.customerTypeChoose.FormattingEnabled = true;
             this.customerTypeChoose.ItemHeight = 23;
-            this.customerTypeChoose.Location = new System.Drawing.Point(677, 57);
+            this.customerTypeChoose.Location = new System.Drawing.Point(569, 57);
             this.customerTypeChoose.Name = "customerTypeChoose";
-            this.customerTypeChoose.Size = new System.Drawing.Size(324, 29);
+            this.customerTypeChoose.Size = new System.Drawing.Size(432, 29);
             this.customerTypeChoose.TabIndex = 1;
             this.customerTypeChoose.UseSelectable = true;
             this.customerTypeChoose.SelectedValueChanged += new System.EventHandler(this.customerTypeChoose_SelectedValueChanged);
@@ -64,33 +71,11 @@
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(677, 92);
+            this.listBox1.Location = new System.Drawing.Point(569, 92);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(324, 584);
+            this.listBox1.Size = new System.Drawing.Size(432, 584);
             this.listBox1.TabIndex = 2;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
-            // 
-            // metroButton6
-            // 
-            this.metroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton6.Location = new System.Drawing.Point(23, 696);
-            this.metroButton6.Name = "metroButton6";
-            this.metroButton6.Size = new System.Drawing.Size(161, 49);
-            this.metroButton6.TabIndex = 18;
-            this.metroButton6.Text = "Änderungen speichern";
-            this.metroButton6.UseSelectable = true;
-            this.metroButton6.Click += new System.EventHandler(this.metroButton6_Click);
-            // 
-            // metroButton1
-            // 
-            this.metroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton1.Location = new System.Drawing.Point(500, 165);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(161, 49);
-            this.metroButton1.TabIndex = 19;
-            this.metroButton1.Text = "Termin anhängen";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // metroLabel1
             // 
@@ -130,17 +115,87 @@
             this.labKundenNr.Size = new System.Drawing.Size(0, 0);
             this.labKundenNr.TabIndex = 24;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Location = new System.Drawing.Point(840, 696);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(161, 49);
+            this.btnPrint.TabIndex = 25;
+            this.btnPrint.Text = "Drucken";
+            this.btnPrint.UseSelectable = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroButton2.Location = new System.Drawing.Point(23, 696);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(161, 49);
+            this.metroButton2.TabIndex = 26;
+            this.metroButton2.Text = "Summe";
+            this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            // 
+            // richTextBoxToday
+            // 
+            this.richTextBoxToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.richTextBoxToday.Location = new System.Drawing.Point(23, 475);
+            this.richTextBoxToday.Name = "richTextBoxToday";
+            this.richTextBoxToday.Size = new System.Drawing.Size(457, 201);
+            this.richTextBoxToday.TabIndex = 27;
+            this.richTextBoxToday.Text = "";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel2.Location = new System.Drawing.Point(23, 142);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(134, 25);
+            this.metroLabel2.TabIndex = 28;
+            this.metroLabel2.Text = "Gesamthistorie:";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel4.Location = new System.Drawing.Point(23, 447);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(117, 25);
+            this.metroLabel4.TabIndex = 29;
+            this.metroLabel4.Text = "Termin heute:";
+            // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.richTextBoxToday);
+            this.Controls.Add(this.metroButton2);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.labKundenNr);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.labName);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroButton1);
-            this.Controls.Add(this.metroButton6);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.customerTypeChoose);
             this.Controls.Add(this.richTextBox1);
@@ -157,11 +212,16 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private MetroFramework.Controls.MetroComboBox customerTypeChoose;
         private System.Windows.Forms.ListBox listBox1;
-        private MetroFramework.Controls.MetroButton metroButton6;
-        private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel labName;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel labKundenNr;
+        private MetroFramework.Controls.MetroButton btnPrint;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private MetroFramework.Controls.MetroButton metroButton2;
+        private System.Windows.Forms.RichTextBox richTextBoxToday;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
     }
 }

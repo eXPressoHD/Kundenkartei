@@ -52,9 +52,9 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbGeburtstag = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +73,7 @@
             this.metroListView1.Location = new System.Drawing.Point(0, 30);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
-            this.metroListView1.Size = new System.Drawing.Size(947, 474);
+            this.metroListView1.Size = new System.Drawing.Size(947, 385);
             this.metroListView1.TabIndex = 8;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.View = System.Windows.Forms.View.Details;
@@ -109,7 +109,7 @@
             // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(800, 449);
+            this.metroButton3.Location = new System.Drawing.Point(800, 360);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(141, 49);
             this.metroButton3.TabIndex = 19;
@@ -441,17 +441,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kunde bearbeiten";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.metroButton3);
-            this.groupBox2.Controls.Add(this.metroListView1);
-            this.groupBox2.Location = new System.Drawing.Point(23, 330);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(947, 504);
-            this.groupBox2.TabIndex = 36;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Termine";
-            // 
             // tbGeburtstag
             // 
             // 
@@ -493,11 +482,22 @@
             this.metroLabel8.TabIndex = 36;
             this.metroLabel8.Text = "Geburtstag:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.metroButton3);
+            this.groupBox2.Controls.Add(this.metroListView1);
+            this.groupBox2.Location = new System.Drawing.Point(23, 330);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(947, 415);
+            this.groupBox2.TabIndex = 36;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Termine";
+            // 
             // CustomerHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 857);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "CustomerHistory";

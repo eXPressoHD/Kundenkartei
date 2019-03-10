@@ -132,7 +132,7 @@
             this.Kunde_anlegen.Location = new System.Drawing.Point(34, 364);
             this.Kunde_anlegen.Name = "Kunde_anlegen";
             this.Kunde_anlegen.Size = new System.Drawing.Size(121, 50);
-            this.Kunde_anlegen.TabIndex = 8;
+            this.Kunde_anlegen.TabIndex = 9;
             this.Kunde_anlegen.Text = "Kunde anlegen";
             this.Kunde_anlegen.UseSelectable = true;
             this.Kunde_anlegen.Click += new System.EventHandler(this.Kunde_anlegen_Click);
@@ -153,7 +153,7 @@
             this.tbAdresse.CustomButton.Visible = false;
             this.tbAdresse.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbAdresse.Lines = new string[0];
-            this.tbAdresse.Location = new System.Drawing.Point(186, 205);
+            this.tbAdresse.Location = new System.Drawing.Point(185, 205);
             this.tbAdresse.MaxLength = 32767;
             this.tbAdresse.Name = "tbAdresse";
             this.tbAdresse.PasswordChar = '\0';
@@ -163,7 +163,7 @@
             this.tbAdresse.SelectionStart = 0;
             this.tbAdresse.ShortcutsEnabled = true;
             this.tbAdresse.Size = new System.Drawing.Size(171, 23);
-            this.tbAdresse.TabIndex = 4;
+            this.tbAdresse.TabIndex = 5;
             this.tbAdresse.UseSelectable = true;
             this.tbAdresse.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbAdresse.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -204,7 +204,7 @@
             this.tbPlz.SelectionStart = 0;
             this.tbPlz.ShortcutsEnabled = true;
             this.tbPlz.Size = new System.Drawing.Size(90, 23);
-            this.tbPlz.TabIndex = 5;
+            this.tbPlz.TabIndex = 6;
             this.tbPlz.UseSelectable = true;
             this.tbPlz.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbPlz.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -245,7 +245,7 @@
             this.tbStadt.SelectionStart = 0;
             this.tbStadt.ShortcutsEnabled = true;
             this.tbStadt.Size = new System.Drawing.Size(171, 23);
-            this.tbStadt.TabIndex = 6;
+            this.tbStadt.TabIndex = 7;
             this.tbStadt.UseSelectable = true;
             this.tbStadt.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbStadt.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -276,7 +276,7 @@
             this.tbMail.CustomButton.Visible = false;
             this.tbMail.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbMail.Lines = new string[0];
-            this.tbMail.Location = new System.Drawing.Point(186, 319);
+            this.tbMail.Location = new System.Drawing.Point(185, 317);
             this.tbMail.MaxLength = 32767;
             this.tbMail.Name = "tbMail";
             this.tbMail.PasswordChar = '\0';
@@ -286,7 +286,7 @@
             this.tbMail.SelectionStart = 0;
             this.tbMail.ShortcutsEnabled = true;
             this.tbMail.Size = new System.Drawing.Size(171, 23);
-            this.tbMail.TabIndex = 7;
+            this.tbMail.TabIndex = 8;
             this.tbMail.UseSelectable = true;
             this.tbMail.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbMail.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -327,7 +327,7 @@
             this.tbGeburtstag.SelectionStart = 0;
             this.tbGeburtstag.ShortcutsEnabled = true;
             this.tbGeburtstag.Size = new System.Drawing.Size(171, 23);
-            this.tbGeburtstag.TabIndex = 14;
+            this.tbGeburtstag.TabIndex = 4;
             this.tbGeburtstag.UseSelectable = true;
             this.tbGeburtstag.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbGeburtstag.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);

@@ -47,11 +47,13 @@
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroButton6 = new MetroFramework.Controls.MetroButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CreateKunde
             // 
-            this.CreateKunde.Location = new System.Drawing.Point(23, 63);
+            this.CreateKunde.Location = new System.Drawing.Point(9, 31);
             this.CreateKunde.Name = "CreateKunde";
             this.CreateKunde.Size = new System.Drawing.Size(161, 49);
             this.CreateKunde.TabIndex = 0;
@@ -75,7 +77,7 @@
             this.tbKundenName.CustomButton.Visible = false;
             this.tbKundenName.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.tbKundenName.Lines = new string[0];
-            this.tbKundenName.Location = new System.Drawing.Point(23, 250);
+            this.tbKundenName.Location = new System.Drawing.Point(23, 269);
             this.tbKundenName.MaxLength = 32767;
             this.tbKundenName.Name = "tbKundenName";
             this.tbKundenName.PasswordChar = '\0';
@@ -96,7 +98,7 @@
             // metroButton1
             // 
             this.metroButton1.Enabled = false;
-            this.metroButton1.Location = new System.Drawing.Point(23, 118);
+            this.metroButton1.Location = new System.Drawing.Point(9, 86);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(161, 49);
             this.metroButton1.TabIndex = 5;
@@ -107,7 +109,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(23, 118);
+            this.metroButton2.Location = new System.Drawing.Point(9, 86);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(161, 49);
             this.metroButton2.TabIndex = 6;
@@ -130,10 +132,10 @@
             this.columnHeader6});
             this.metroListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.metroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.metroListView1.Location = new System.Drawing.Point(23, 289);
+            this.metroListView1.Location = new System.Drawing.Point(23, 308);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
-            this.metroListView1.Size = new System.Drawing.Size(940, 453);
+            this.metroListView1.Size = new System.Drawing.Size(940, 434);
             this.metroListView1.TabIndex = 7;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.View = System.Windows.Forms.View.Details;
@@ -142,7 +144,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 150;
+            this.columnHeader1.Width = 180;
             // 
             // columnHeader2
             // 
@@ -152,12 +154,12 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Telefon";
-            this.columnHeader3.Width = 150;
+            this.columnHeader3.Width = 200;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Termin";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Text = "Geburtstag";
+            this.columnHeader4.Width = 150;
             // 
             // columnHeader5
             // 
@@ -171,7 +173,7 @@
             // 
             // ClearSearch
             // 
-            this.ClearSearch.Location = new System.Drawing.Point(190, 250);
+            this.ClearSearch.Location = new System.Drawing.Point(190, 269);
             this.ClearSearch.Name = "ClearSearch";
             this.ClearSearch.Size = new System.Drawing.Size(34, 33);
             this.ClearSearch.TabIndex = 8;
@@ -192,7 +194,7 @@
             // 
             // metroButton4
             // 
-            this.metroButton4.Location = new System.Drawing.Point(23, 173);
+            this.metroButton4.Location = new System.Drawing.Point(9, 141);
             this.metroButton4.Name = "metroButton4";
             this.metroButton4.Size = new System.Drawing.Size(161, 49);
             this.metroButton4.TabIndex = 12;
@@ -226,7 +228,7 @@
             // 
             this.metroRadioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(762, 268);
+            this.metroRadioButton1.Location = new System.Drawing.Point(761, 287);
             this.metroRadioButton1.Name = "metroRadioButton1";
             this.metroRadioButton1.Size = new System.Drawing.Size(99, 15);
             this.metroRadioButton1.TabIndex = 15;
@@ -238,7 +240,7 @@
             // 
             this.metroRadioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(878, 268);
+            this.metroRadioButton2.Location = new System.Drawing.Point(877, 287);
             this.metroRadioButton2.Name = "metroRadioButton2";
             this.metroRadioButton2.Size = new System.Drawing.Size(85, 15);
             this.metroRadioButton2.TabIndex = 16;
@@ -249,7 +251,7 @@
             // metroButton6
             // 
             this.metroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton6.Location = new System.Drawing.Point(190, 63);
+            this.metroButton6.Location = new System.Drawing.Point(176, 31);
             this.metroButton6.Name = "metroButton6";
             this.metroButton6.Size = new System.Drawing.Size(161, 49);
             this.metroButton6.TabIndex = 17;
@@ -257,29 +259,40 @@
             this.metroButton6.UseSelectable = true;
             this.metroButton6.Click += new System.EventHandler(this.metroButton6_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.metroButton6);
+            this.groupBox1.Controls.Add(this.CreateKunde);
+            this.groupBox1.Controls.Add(this.metroButton2);
+            this.groupBox1.Controls.Add(this.metroButton4);
+            this.groupBox1.Controls.Add(this.metroButton1);
+            this.groupBox1.Location = new System.Drawing.Point(24, 53);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(356, 210);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Kunde";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
-            this.Controls.Add(this.metroButton6);
             this.Controls.Add(this.metroRadioButton2);
             this.Controls.Add(this.metroRadioButton1);
             this.Controls.Add(this.TodayDatetime);
             this.Controls.Add(this.metroButton5);
-            this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.ClearSearch);
             this.Controls.Add(this.metroListView1);
-            this.Controls.Add(this.metroButton2);
-            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.tbKundenName);
-            this.Controls.Add(this.CreateKunde);
+            this.Controls.Add(this.groupBox1);
             this.Name = "MainForm";
             this.Resizable = false;
             this.Text = "Kundenverwaltung - Hairlight";
             this.Activated += new System.EventHandler(this.Main_Activated);
             this.Load += new System.EventHandler(this.Main_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +319,7 @@
         private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
         private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private MetroFramework.Controls.MetroButton metroButton6;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

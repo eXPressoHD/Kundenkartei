@@ -66,7 +66,8 @@ namespace Kundenkartei
 
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-                item.SubItems.Add(GetDate(s, sqlFormat));
+               // item.SubItems.Add(GetDate(s, sqlFormat));
+                item.SubItems.Add(GetBirthday(s));
                 item.SubItems.Add(GetDienstLeistung(s, sqlFormat));
                 item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
                 metroListView1.Items.Add(item);
@@ -80,6 +81,19 @@ namespace Kundenkartei
         private string GetDate(Kunde s, string date)
         {
             DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
+            if (tab.Rows.Count > 0)
+            {
+                return tab.Rows[0].ItemArray[0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        private string GetBirthday(Kunde s)
+        {
+            DataTable tab = SqliteDataAccess.GetKundenBirthday(s);
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[0].ToString();
