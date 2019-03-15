@@ -43,6 +43,9 @@
             this.richTextBoxToday = new System.Windows.Forms.RichTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.labGesamtSumme = new MetroFramework.Controls.MetroLabel();
+            this.btnCloseWindow = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -124,6 +127,7 @@
             this.btnPrint.TabIndex = 25;
             this.btnPrint.Text = "Drucken";
             this.btnPrint.UseSelectable = true;
+            this.btnPrint.Visible = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // printPreviewDialog1
@@ -145,9 +149,9 @@
             this.metroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButton2.Location = new System.Drawing.Point(23, 696);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(161, 49);
+            this.metroButton2.Size = new System.Drawing.Size(168, 49);
             this.metroButton2.TabIndex = 26;
-            this.metroButton2.Text = "Summe";
+            this.metroButton2.Text = "Aktuellen Termin speichern";
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
@@ -159,6 +163,7 @@
             this.richTextBoxToday.Size = new System.Drawing.Size(457, 201);
             this.richTextBoxToday.TabIndex = 27;
             this.richTextBoxToday.Text = "";
+            this.richTextBoxToday.TextChanged += new System.EventHandler(this.richTextBoxToday_TextChanged);
             // 
             // metroLabel2
             // 
@@ -167,9 +172,9 @@
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel2.Location = new System.Drawing.Point(23, 142);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(134, 25);
+            this.metroLabel2.Size = new System.Drawing.Size(180, 25);
             this.metroLabel2.TabIndex = 28;
-            this.metroLabel2.Text = "Gesamthistorie:";
+            this.metroLabel2.Text = "Historie aller Termine:";
             // 
             // metroLabel4
             // 
@@ -178,15 +183,50 @@
             this.metroLabel4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel4.Location = new System.Drawing.Point(23, 447);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(117, 25);
+            this.metroLabel4.Size = new System.Drawing.Size(142, 25);
             this.metroLabel4.TabIndex = 29;
-            this.metroLabel4.Text = "Termin heute:";
+            this.metroLabel4.Text = "Aktueller Termin:";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel5.Location = new System.Drawing.Point(332, 447);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(77, 25);
+            this.metroLabel5.TabIndex = 30;
+            this.metroLabel5.Text = "Summe:";
+            // 
+            // labGesamtSumme
+            // 
+            this.labGesamtSumme.AutoSize = true;
+            this.labGesamtSumme.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.labGesamtSumme.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labGesamtSumme.Location = new System.Drawing.Point(415, 447);
+            this.labGesamtSumme.Name = "labGesamtSumme";
+            this.labGesamtSumme.Size = new System.Drawing.Size(0, 0);
+            this.labGesamtSumme.TabIndex = 31;
+            // 
+            // btnCloseWindow
+            // 
+            this.btnCloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseWindow.Location = new System.Drawing.Point(840, 696);
+            this.btnCloseWindow.Name = "btnCloseWindow";
+            this.btnCloseWindow.Size = new System.Drawing.Size(161, 49);
+            this.btnCloseWindow.TabIndex = 32;
+            this.btnCloseWindow.Text = "Schließen";
+            this.btnCloseWindow.UseSelectable = true;
+            this.btnCloseWindow.Click += new System.EventHandler(this.btnCloseWindow_Click);
             // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.btnCloseWindow);
+            this.Controls.Add(this.labGesamtSumme);
+            this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.richTextBoxToday);
@@ -223,5 +263,8 @@
         private System.Windows.Forms.RichTextBox richTextBoxToday;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroLabel labGesamtSumme;
+        private MetroFramework.Controls.MetroButton btnCloseWindow;
     }
 }

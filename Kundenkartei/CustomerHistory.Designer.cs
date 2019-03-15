@@ -407,7 +407,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(800, 178);
+            this.metroButton1.Location = new System.Drawing.Point(708, 302);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(141, 49);
             this.metroButton1.TabIndex = 34;
@@ -420,7 +420,6 @@
             this.groupBox1.Controls.Add(this.tbGeburtstag);
             this.groupBox1.Controls.Add(this.metroLabel8);
             this.groupBox1.Controls.Add(this.tbTelefon);
-            this.groupBox1.Controls.Add(this.metroButton1);
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.tbMail);
             this.groupBox1.Controls.Add(this.tbName);
@@ -436,7 +435,7 @@
             this.groupBox1.Controls.Add(this.tbStadt);
             this.groupBox1.Location = new System.Drawing.Point(23, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(947, 233);
+            this.groupBox1.Size = new System.Drawing.Size(826, 233);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kunde bearbeiten";
@@ -486,20 +485,22 @@
             // 
             this.groupBox2.Controls.Add(this.metroButton3);
             this.groupBox2.Controls.Add(this.metroListView1);
-            this.groupBox2.Location = new System.Drawing.Point(23, 330);
+            this.groupBox2.Location = new System.Drawing.Point(23, 382);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(947, 415);
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Termine";
+            this.groupBox2.Visible = false;
             // 
             // CustomerHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(873, 362);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.metroButton1);
             this.Name = "CustomerHistory";
             this.Text = "Kundeninformationen";
             this.Activated += new System.EventHandler(this.CustomerHistory_Activated);

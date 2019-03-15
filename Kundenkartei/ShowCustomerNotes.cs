@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -26,19 +27,19 @@ namespace Kundenkartei
         public ShowCustomerNotes()
         {
             InitializeComponent();
-            FetchTypes();            
+            FetchTypes();
         }
 
         private void FetchTypes()
         {
             List<String> types = new List<string>();
             DataTable tab = SqliteDataAccess.GetCustomerTypes();
-            foreach(DataRow row in tab.Rows)
+            foreach (DataRow row in tab.Rows)
             {
                 types.Add(row["Typ"].ToString());
             }
 
-            customerTypeChoose.Items.AddRange(types.ToArray()); 
+            customerTypeChoose.Items.AddRange(types.ToArray());
         }
 
         private void customerTypeChoose_SelectedValueChanged(object sender, EventArgs e)
@@ -46,20 +47,20 @@ namespace Kundenkartei
             listBox1.Items.Clear();
             MetroFramework.Controls.MetroComboBox box = sender as MetroComboBox;
             DataTable preisTab = new DataTable();
-            List<String> preisListe = new List<string>();           
+            List<String> preisListe = new List<string>();
 
-            if(box.Text == "Herren")
+            if (box.Text == "Herren")
             {
-               preisTab = SqliteDataAccess.GetPriceList("Herren");
-            } else if(box.Text == "Damen")
+                preisTab = SqliteDataAccess.GetPriceList("Herren");
+            } else if (box.Text == "Damen")
             {
                 preisTab = SqliteDataAccess.GetPriceList("Damen");
-            } else if(box.Text == "Kids")
+            } else if (box.Text == "Kids")
             {
                 preisTab = SqliteDataAccess.GetPriceList("Kids");
             }
 
-            foreach(DataRow row in preisTab.Rows)
+            foreach (DataRow row in preisTab.Rows)
             {
                 preisListe.Add(String.Format("{0} - {1}", row["Titel"].ToString(), row["Preis"].ToString() + "€"));
             }
@@ -74,11 +75,13 @@ namespace Kundenkartei
             _counter++;
             richTextBoxToday.Text += text;
             richTextBoxToday.Text += Environment.NewLine;
+            _gesamtSumme += Convert.ToInt32(Regex.Match(listBox1.GetItemText(listBox1.SelectedItem), @"\d+").Value);
+            labGesamtSumme.Text = _gesamtSumme.ToString() + "€";
         }
 
         private void metroButton6_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ShowCustomerNotes_Load(object sender, EventArgs e)
@@ -121,13 +124,12 @@ namespace Kundenkartei
             Bitmap bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
             Graphics mg = Graphics.FromImage(bmp);
             mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
-
             printPreviewDialog1.Document = printDocument1;
             //  printPreviewDialog1.Show();
 
             try {
                 printDocument1.Print();
-            } catch(InvalidPrinterException ex)
+            } catch (InvalidPrinterException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -135,43 +137,65 @@ namespace Kundenkartei
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(_printText, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, 150, 125);  
+            e.Graphics.DrawString(_printText, new Font("Arial", Convert.ToInt32(ConfigurationManager.AppSettings["PrintFontSize"]), FontStyle.Regular), Brushes.Black, 150, 125);
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < _counter; i++)
+            if (_sum > 0)
             {
-                _sum += Convert.ToInt32(Regex.Match(richTextBoxToday.Lines[i], @"\d+").Value);
-            }
-            _printText = "Termin am: " + DateTime.Now.ToString("dd.MM.yyyy") +  Environment.NewLine + richTextBoxToday.Text + Environment.NewLine + "Gesamtsumme: " + _sum.ToString() + "€";
-            richTextBox1.Text += Environment.NewLine;
-            richTextBox1.Text += Environment.NewLine;
-            richTextBox1.Text += DateTime.Now.ToString("dd.MM.yyyy");
-            richTextBox1.Text += Environment.NewLine;
-            richTextBox1.Text += richTextBoxToday.Text;
-            richTextBox1.Text += "Gesamtsumme: " + _sum.ToString() + "€";
-                       
-            richTextBoxToday.Clear();
-            _counter = 0;
-            _sum = 0;
+                StringBuilder sb = new StringBuilder();
+                string shopAdress = "Friseur Hairlight";
+                _printText = shopAdress + Environment.NewLine + "Termin am: " + DateTime.Now.ToString("dd.MM.yyyy") + Environment.NewLine + richTextBoxToday.Text + Environment.NewLine + "Gesamtsumme: " + _sum.ToString() + "€";
+                richTextBox1.Text += Environment.NewLine;
+                richTextBox1.Text += Environment.NewLine;
+                richTextBox1.Text += DateTime.Now.ToString("dd.MM.yyyy");
+                richTextBox1.Text += Environment.NewLine;
+                richTextBox1.Text += richTextBoxToday.Text;
+                richTextBox1.Text += "Gesamtsumme: " + _sum.ToString() + "€";
 
-            int kundenNr = (int)this.Tag;
-            DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-            Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
-            k.Notizen = richTextBox1.Text;
-            SqliteDataAccess.UpdateKunde(k);
-            //this.Close();            
-            DialogResult dialogResult = MessageBox.Show("Beleg drucken?", "Drucken", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                btnPrint_Click(sender, e);
+                richTextBoxToday.Clear();
+                _counter = 0;
+                _sum = 0;
+                labGesamtSumme.Text = String.Empty;
+                int kundenNr = (int)this.Tag;
+                DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
+                Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
+                k.Notizen = richTextBox1.Text;
+                SqliteDataAccess.UpdateKunde(k);     
+
+                DialogResult dialogResult = MessageBox.Show("Beleg drucken?", "Drucken", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    btnPrint_Click(sender, e);
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
             }
-            else if (dialogResult == DialogResult.No)
+        }
+
+        private void richTextBoxToday_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(richTextBoxToday.Text))
             {
-                //do something else
+                _sum = 0;
+                for (int i = 0; i < _counter; i++)
+                {
+                    _sum += Convert.ToInt32(Regex.Match(richTextBoxToday.Lines[i], @"\d+").Value);
+
+                }
+                labGesamtSumme.Text = _sum.ToString() + "€";
+            } else
+            {
+
             }
+        }
+
+        private void btnCloseWindow_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
