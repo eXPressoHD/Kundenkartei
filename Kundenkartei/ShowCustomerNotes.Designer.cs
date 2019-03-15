@@ -46,6 +46,8 @@
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.labGesamtSumme = new MetroFramework.Controls.MetroLabel();
             this.btnCloseWindow = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -164,6 +166,7 @@
             this.richTextBoxToday.TabIndex = 27;
             this.richTextBoxToday.Text = "";
             this.richTextBoxToday.TextChanged += new System.EventHandler(this.richTextBoxToday_TextChanged);
+            this.richTextBoxToday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxToday_KeyPress);
             // 
             // metroLabel2
             // 
@@ -219,11 +222,35 @@
             this.btnCloseWindow.UseSelectable = true;
             this.btnCloseWindow.Click += new System.EventHandler(this.btnCloseWindow_Click);
             // 
+            // metroButton1
+            // 
+            this.metroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroButton1.Location = new System.Drawing.Point(445, 475);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(35, 35);
+            this.metroButton1.TabIndex = 33;
+            this.metroButton1.Text = "X";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click_1);
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroButton3.Location = new System.Drawing.Point(197, 696);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(168, 49);
+            this.metroButton3.TabIndex = 34;
+            this.metroButton3.Text = "Dienstleistung einfügen";
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.metroButton3);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.btnCloseWindow);
             this.Controls.Add(this.labGesamtSumme);
             this.Controls.Add(this.metroLabel5);
@@ -266,5 +293,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroLabel labGesamtSumme;
         private MetroFramework.Controls.MetroButton btnCloseWindow;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }

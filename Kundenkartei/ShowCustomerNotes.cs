@@ -76,7 +76,7 @@ namespace Kundenkartei
             richTextBoxToday.Text += text;
             richTextBoxToday.Text += Environment.NewLine;
             _gesamtSumme += Convert.ToInt32(Regex.Match(listBox1.GetItemText(listBox1.SelectedItem), @"\d+").Value);
-            labGesamtSumme.Text = _gesamtSumme.ToString() + "€";
+            labGesamtSumme.Text = _sum.ToString() + "€";
         }
 
         private void metroButton6_Click(object sender, EventArgs e)
@@ -181,6 +181,7 @@ namespace Kundenkartei
                 }
             }
         }
+        
 
         private void richTextBoxToday_TextChanged(object sender, EventArgs e)
         {
@@ -189,8 +190,10 @@ namespace Kundenkartei
                 _sum = 0;
                 for (int i = 0; i < _counter; i++)
                 {
-                    _sum += Convert.ToInt32(Regex.Match(richTextBoxToday.Lines[i], @"\d+").Value);
-
+                    if (richTextBoxToday.Lines[i].Any(char.IsDigit))
+                    {
+                        _sum += Convert.ToInt32(Regex.Match(richTextBoxToday.Lines[i], @"\d+").Value);
+                    }
                 }
                 labGesamtSumme.Text = _sum.ToString() + "€";
             } else
@@ -199,9 +202,50 @@ namespace Kundenkartei
             }
         }
 
+
+
         private void btnCloseWindow_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+            /*
+            if (_counter  > 0)
+            {                
+                richTextBoxToday.SelectionStart = richTextBoxToday.GetFirstCharIndexFromLine(_counter);
+                richTextBoxToday.SelectionLength = this.richTextBoxToday.Lines[_counter].Length + 1;
+                this.richTextBoxToday.SelectedText = String.Empty;                      
+                _counter--;
+                _gesamtSumme = _sum;
+            } else if(_counter == 0)
+            {
+                _sum = 0;
+                labGesamtSumme.Text = "0";
+            }*/
+
+            _counter = 0;
+            _sum = 0;
+            _gesamtSumme = 0;
+            labGesamtSumme.Text = "";
+            richTextBoxToday.Clear();
+        }
+
+        private void richTextBoxToday_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                _counter++;
+            }
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            string text = "Neue Dienstleistung";
+            richTextBoxToday.Text += text;
+            richTextBoxToday.Text += Environment.NewLine;
+            _counter++;
         }
     }
 }
