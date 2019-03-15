@@ -162,16 +162,22 @@ namespace Kundenkartei
                 DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
                 Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
                 k.Notizen = richTextBox1.Text;
-                SqliteDataAccess.UpdateKunde(k);     
+                SqliteDataAccess.UpdateKunde(k);
 
-                DialogResult dialogResult = MessageBox.Show("Beleg drucken?", "Drucken", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (ConfigurationManager.AppSettings["AskForPrint"].ToString() == "true")
                 {
-                    btnPrint_Click(sender, e);
-                }
-                else if (dialogResult == DialogResult.No)
+                    DialogResult dialogResult = MessageBox.Show("Beleg drucken?", "Drucken", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        btnPrint_Click(sender, e);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
+                } else
                 {
-                    //do something else
+
                 }
             }
         }

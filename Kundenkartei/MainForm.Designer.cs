@@ -190,6 +190,7 @@
             this.metroButton3.TabIndex = 11;
             this.metroButton3.Text = "Neuer Termin";
             this.metroButton3.UseSelectable = true;
+            this.metroButton3.Visible = false;
             this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click_1);
             // 
             // metroButton4
@@ -211,6 +212,7 @@
             this.metroButton5.TabIndex = 13;
             this.metroButton5.Text = "Termin bearbeiten";
             this.metroButton5.UseSelectable = true;
+            this.metroButton5.Visible = false;
             this.metroButton5.Click += new System.EventHandler(this.metroButton5_Click);
             // 
             // TodayDatetime
@@ -234,6 +236,7 @@
             this.metroRadioButton1.TabIndex = 15;
             this.metroRadioButton1.Text = "Termine heute";
             this.metroRadioButton1.UseSelectable = true;
+            this.metroRadioButton1.Visible = false;
             this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
             // 
             // metroRadioButton2
@@ -251,7 +254,7 @@
             // metroButton6
             // 
             this.metroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton6.Location = new System.Drawing.Point(176, 31);
+            this.metroButton6.Location = new System.Drawing.Point(175, 31);
             this.metroButton6.Name = "metroButton6";
             this.metroButton6.Size = new System.Drawing.Size(161, 49);
             this.metroButton6.TabIndex = 17;
@@ -268,7 +271,7 @@
             this.groupBox1.Controls.Add(this.metroButton1);
             this.groupBox1.Location = new System.Drawing.Point(24, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(356, 210);
+            this.groupBox1.Size = new System.Drawing.Size(355, 210);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kunde";
