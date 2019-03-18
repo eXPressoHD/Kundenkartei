@@ -47,7 +47,6 @@
             this.labGesamtSumme = new MetroFramework.Controls.MetroLabel();
             this.btnCloseWindow = new MetroFramework.Controls.MetroButton();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -233,23 +232,11 @@
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click_1);
             // 
-            // metroButton3
-            // 
-            this.metroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton3.Location = new System.Drawing.Point(197, 696);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(168, 49);
-            this.metroButton3.TabIndex = 34;
-            this.metroButton3.Text = "Dienstleistung einfügen";
-            this.metroButton3.UseSelectable = true;
-            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
-            // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.btnCloseWindow);
             this.Controls.Add(this.labGesamtSumme);
@@ -294,6 +281,5 @@
         private MetroFramework.Controls.MetroLabel labGesamtSumme;
         private MetroFramework.Controls.MetroButton btnCloseWindow;
         private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }

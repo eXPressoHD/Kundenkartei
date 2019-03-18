@@ -188,7 +188,10 @@ namespace Kundenkartei
             if (!String.IsNullOrEmpty(richTextBoxToday.Text))
             {
                 _sum = 0;
-                for (int i = 0; i < _counter; i++)
+                string test = String.Empty;
+
+
+                for (int i = 0; i < richTextBoxToday.Lines.Length; i++)
                 {
                     if (richTextBoxToday.Lines[i].Any(char.IsDigit))
                     {
@@ -236,16 +239,18 @@ namespace Kundenkartei
         {
             if (e.KeyChar == 13)
             {
-                _counter++;
+             
             }
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            string text = "Neue Dienstleistung";
+            string text = metroTextBox1.Text;
             richTextBoxToday.Text += text;
             richTextBoxToday.Text += Environment.NewLine;
             _counter++;
+            metroTextBox1.Text = String.Empty;
+            richTextBoxToday_TextChanged(sender, e);
         }
     }
 }
