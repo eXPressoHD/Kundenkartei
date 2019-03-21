@@ -43,6 +43,7 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.tbGeburtstag = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -342,11 +343,22 @@
             this.metroLabel7.TabIndex = 13;
             this.metroLabel7.Text = "Geburtstag:";
             // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(273, 364);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(121, 50);
+            this.metroButton1.TabIndex = 14;
+            this.metroButton1.Text = "Schließen";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
             // AddCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 437);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.tbGeburtstag);
             this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.tbMail);
@@ -386,5 +398,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTextBox tbGeburtstag;
         private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

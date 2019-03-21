@@ -196,9 +196,18 @@ namespace Kundenkartei
             if (metroListView1.CheckedItems.Count == 1)
             {
                 string kundenNr = metroListView1.CheckedItems[0].SubItems[1].Text;
-                SqliteDataAccess.DeleteKunde(kundenNr);
-                metroListView1.Items.Clear();
-                FillCustomerList();
+                DialogResult dialogResult = MessageBox.Show("Kunde wirklich löschen?", "Kunde löschen", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {                    
+                    SqliteDataAccess.DeleteKunde(kundenNr);
+                    metroListView1.Items.Clear();
+                    FillCustomerList();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
+                
             }
             else
             {
@@ -372,6 +381,11 @@ namespace Kundenkartei
             {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
+        }
+
+        private void metroButton7_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
