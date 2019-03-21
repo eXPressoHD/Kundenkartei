@@ -111,11 +111,7 @@ namespace Kundenkartei
         {
             Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbGeburtstag.Text ,tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
             SqliteDataAccess.UpdateKunde(k);
-            MessageBox.Show("Änderungen gespeichert.");          
-        }
-
-        private void metroButton2_Click(object sender, EventArgs e)
-        {
+            MessageBox.Show("Änderungen gespeichert.");
             this.Close();
         }
     }

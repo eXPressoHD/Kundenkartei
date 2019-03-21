@@ -55,7 +55,6 @@
             this.tbGeburtstag = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -408,7 +407,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(561, 302);
+            this.metroButton1.Location = new System.Drawing.Point(708, 302);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(141, 49);
             this.metroButton1.TabIndex = 34;
@@ -494,22 +493,11 @@
             this.groupBox2.Text = "Termine";
             this.groupBox2.Visible = false;
             // 
-            // metroButton2
-            // 
-            this.metroButton2.Location = new System.Drawing.Point(708, 302);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(141, 49);
-            this.metroButton2.TabIndex = 37;
-            this.metroButton2.Text = "Schließen";
-            this.metroButton2.UseSelectable = true;
-            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
-            // 
             // CustomerHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 362);
-            this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.metroButton1);
@@ -552,6 +540,5 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroTextBox tbGeburtstag;
         private MetroFramework.Controls.MetroLabel metroLabel8;
-        private MetroFramework.Controls.MetroButton metroButton2;
     }
 }
