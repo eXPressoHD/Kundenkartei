@@ -190,7 +190,6 @@ namespace Kundenkartei
                 _sum = 0;
                 string test = String.Empty;
 
-
                 for (int i = 0; i < richTextBoxToday.Lines.Length; i++)
                 {
                     if (richTextBoxToday.Lines[i].Any(char.IsDigit))
@@ -233,24 +232,6 @@ namespace Kundenkartei
             _gesamtSumme = 0;
             labGesamtSumme.Text = "";
             richTextBoxToday.Clear();
-        }
-
-        private void richTextBoxToday_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-             
-            }
-        }
-
-        private void metroButton3_Click(object sender, EventArgs e)
-        {
-            string text = metroTextBox1.Text;
-            richTextBoxToday.Text += text;
-            richTextBoxToday.Text += Environment.NewLine;
-            _counter++;
-            metroTextBox1.Text = String.Empty;
-            richTextBoxToday_TextChanged(sender, e);
         }
     }
 }

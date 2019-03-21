@@ -68,8 +68,9 @@ namespace Kundenkartei
                 item.SubItems.Add(s.Telefon);
                // item.SubItems.Add(GetDate(s, sqlFormat));
                 item.SubItems.Add(GetBirthday(s));
-                item.SubItems.Add(GetDienstLeistung(s, sqlFormat));
-                item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
+                item.SubItems.Add(GetAdresse(s));
+                item.SubItems.Add(GetEmail(s));
+                //item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
                 metroListView1.Items.Add(item);
                 foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
@@ -123,6 +124,33 @@ namespace Kundenkartei
             if (tab.Rows.Count > 0)
             {
                 return tab.Rows[0].ItemArray[2].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        private string GetAdresse(Kunde s)
+        {
+            DataTable tab = SqliteDataAccess.GetKundenAdresse(s);
+            if (tab.Rows.Count > 0)
+            {
+                string adresse = tab.Rows[0]["Strasse"].ToString() + " " + tab.Rows[0]["PLZ"].ToString() + " " + tab.Rows[0]["Stadt"].ToString();
+                return adresse;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        private string GetEmail(Kunde s)
+        {
+            DataTable tab = SqliteDataAccess.GetKundenEmail(s);
+            if (tab.Rows.Count > 0)
+            {
+                return tab.Rows[0]["Email"].ToString();
             }
             else
             {

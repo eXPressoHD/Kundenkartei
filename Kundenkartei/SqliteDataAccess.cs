@@ -242,6 +242,62 @@ namespace Kundenkartei
             return dt;
         }
 
+        public static DataTable GetKundenAdresse(Kunde k)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Strasse, PLZ, Stadt FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetKundenEmail(Kunde k)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Email FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
+                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
+        }
+
         public static DataTable GetKundenTerminAndDienstleistungAll(Kunde k)
         {
             DataTable dt = new DataTable();

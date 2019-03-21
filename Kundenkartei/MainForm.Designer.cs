@@ -38,7 +38,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClearSearch = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
@@ -48,6 +47,7 @@
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroButton6 = new MetroFramework.Controls.MetroButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +154,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Telefon";
-            this.columnHeader3.Width = 200;
+            this.columnHeader3.Width = 150;
             // 
             // columnHeader4
             // 
@@ -163,13 +163,8 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Dienstleistung";
+            this.columnHeader5.Text = "Adresse";
             this.columnHeader5.Width = 262;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Bei";
-            this.columnHeader6.Width = 168;
             // 
             // ClearSearch
             // 
@@ -254,7 +249,7 @@
             // metroButton6
             // 
             this.metroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton6.Location = new System.Drawing.Point(175, 31);
+            this.metroButton6.Location = new System.Drawing.Point(176, 31);
             this.metroButton6.Name = "metroButton6";
             this.metroButton6.Size = new System.Drawing.Size(161, 49);
             this.metroButton6.TabIndex = 17;
@@ -271,10 +266,15 @@
             this.groupBox1.Controls.Add(this.metroButton1);
             this.groupBox1.Location = new System.Drawing.Point(24, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 210);
+            this.groupBox1.Size = new System.Drawing.Size(348, 210);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kunde";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Email";
+            this.columnHeader6.Width = 250;
             // 
             // MainForm
             // 
@@ -315,7 +315,6 @@
         private MetroFramework.Controls.MetroButton ClearSearch;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private MetroFramework.Controls.MetroButton metroButton3;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private MetroFramework.Controls.MetroButton metroButton4;
         private MetroFramework.Controls.MetroButton metroButton5;
         private MetroFramework.Controls.MetroLabel TodayDatetime;
@@ -323,6 +322,7 @@
         private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private MetroFramework.Controls.MetroButton metroButton6;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 

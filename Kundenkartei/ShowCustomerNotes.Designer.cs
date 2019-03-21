@@ -165,7 +165,6 @@
             this.richTextBoxToday.TabIndex = 27;
             this.richTextBoxToday.Text = "";
             this.richTextBoxToday.TextChanged += new System.EventHandler(this.richTextBoxToday_TextChanged);
-            this.richTextBoxToday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxToday_KeyPress);
             // 
             // metroLabel2
             // 
