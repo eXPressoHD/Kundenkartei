@@ -252,6 +252,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.customerTypeChoose);
             this.Controls.Add(this.richTextBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowCustomerNotes";
             this.Text = "Notizen";
             this.Load += new System.EventHandler(this.ShowCustomerNotes_Load);

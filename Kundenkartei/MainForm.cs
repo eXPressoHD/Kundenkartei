@@ -387,5 +387,10 @@ namespace Kundenkartei
         {
             Environment.Exit(0);
         }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            //Später
+        }
     }
 }

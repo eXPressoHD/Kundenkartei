@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.CreateKunde = new MetroFramework.Controls.MetroButton();
             this.tbKundenName = new MetroFramework.Controls.MetroTextBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
@@ -49,6 +50,7 @@
             this.metroButton6 = new MetroFramework.Controls.MetroButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroButton7 = new MetroFramework.Controls.MetroButton();
+            this.btnSettings = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -280,7 +282,7 @@
             // metroButton7
             // 
             this.metroButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton7.Location = new System.Drawing.Point(801, 63);
+            this.metroButton7.Location = new System.Drawing.Point(802, 63);
             this.metroButton7.Name = "metroButton7";
             this.metroButton7.Size = new System.Drawing.Size(161, 49);
             this.metroButton7.TabIndex = 19;
@@ -288,12 +290,25 @@
             this.metroButton7.UseSelectable = true;
             this.metroButton7.Click += new System.EventHandler(this.metroButton7_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSettings.Location = new System.Drawing.Point(605, 63);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(161, 49);
+            this.btnSettings.TabIndex = 20;
+            this.btnSettings.Text = "Einstellungen";
+            this.btnSettings.UseSelectable = true;
+            this.btnSettings.Visible = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.metroButton7);
             this.Controls.Add(this.metroRadioButton2);
             this.Controls.Add(this.metroRadioButton1);
@@ -304,6 +319,7 @@
             this.Controls.Add(this.metroListView1);
             this.Controls.Add(this.tbKundenName);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Resizable = false;
             this.Text = "Kundenverwaltung - Hairlight";
@@ -338,6 +354,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private MetroFramework.Controls.MetroButton metroButton7;
+        private MetroFramework.Controls.MetroButton btnSettings;
     }
 }
 
