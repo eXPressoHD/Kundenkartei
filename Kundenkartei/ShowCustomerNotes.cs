@@ -160,7 +160,7 @@ namespace Kundenkartei
                 labGesamtSumme.Text = String.Empty;
                 int kundenNr = (int)this.Tag;
                 DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
+                Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0]["Name"].ToString(), kunde.Rows[0]["Telefon"].ToString(), kunde.Rows[0]["Geburtstag"].ToString(), kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(), kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString(), kunde.Rows[0]["Notizen"].ToString());
                 k.Notizen = richTextBox1.Text;
                 SqliteDataAccess.UpdateKunde(k);
 

@@ -18,6 +18,19 @@ namespace Kundenkartei
         public string Geburtstag { get; set; }
         public string Notizen { get; set; }
 
+        public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email, string notizen)
+        {
+            KundenNr = kundenNr;
+            Name = name;
+            Telefon = telefon;
+            Strasse = strasse;
+            Plz = plz;
+            Stadt = stadt;
+            Email = email;
+            Geburtstag = geburtstag;
+            Notizen = notizen;
+        }
+
         public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email)
         {
             KundenNr = kundenNr;

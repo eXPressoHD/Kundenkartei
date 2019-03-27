@@ -109,7 +109,10 @@ namespace Kundenkartei
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbGeburtstag.Text ,tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text);
+            //Get actual customer notes to reference while object creation
+            DataTable noteTab = SqliteDataAccess.GetKundenNotes(Convert.ToInt32(tbKundenNr.Text));
+            string notes = noteTab.Rows[0]["Notizen"].ToString();
+            Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbGeburtstag.Text ,tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text, notes);
             SqliteDataAccess.UpdateKunde(k);
             MessageBox.Show("Änderungen gespeichert.");
             this.Close();
