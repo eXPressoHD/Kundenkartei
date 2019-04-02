@@ -178,7 +178,7 @@
             // metroButton3
             // 
             this.metroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton3.Location = new System.Drawing.Point(802, 63);
+            this.metroButton3.Location = new System.Drawing.Point(514, 25);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(161, 49);
             this.metroButton3.TabIndex = 11;
@@ -201,7 +201,7 @@
             // metroButton5
             // 
             this.metroButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton5.Location = new System.Drawing.Point(800, 118);
+            this.metroButton5.Location = new System.Drawing.Point(681, 25);
             this.metroButton5.Name = "metroButton5";
             this.metroButton5.Size = new System.Drawing.Size(161, 48);
             this.metroButton5.TabIndex = 13;
@@ -284,7 +284,7 @@
             // btnSettings
             // 
             this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettings.Location = new System.Drawing.Point(635, 63);
+            this.btnSettings.Location = new System.Drawing.Point(347, 25);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(161, 49);
             this.btnSettings.TabIndex = 20;
@@ -295,6 +295,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.metroButton7);
             this.groupBox2.Location = new System.Drawing.Point(789, 86);
             this.groupBox2.Name = "groupBox2";

@@ -289,6 +289,10 @@ namespace Kundenkartei
 
         private void Main_Load(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Fullscreen"].ToString()) == 1)
+            {
+                this.SetBounds(Screen.AllScreens[0].WorkingArea.X, Screen.AllScreens[0].WorkingArea.Y, Screen.AllScreens[0].WorkingArea.Width, Screen.AllScreens[0].WorkingArea.Height);
+            }
             this.Activate();
         }
 
@@ -390,7 +394,8 @@ namespace Kundenkartei
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            //Später
+            Settings settings = new Settings();
+            settings.ShowDialog();
         }
     }
 }
