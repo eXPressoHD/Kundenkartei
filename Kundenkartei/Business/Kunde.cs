@@ -8,6 +8,7 @@ namespace Kundenkartei
 {
     public class Kunde
     {
+        #region Properties
         public int KundenNr { get; set; }
         public string Name { get; set; }
         public string Telefon { get; set; }
@@ -16,7 +17,10 @@ namespace Kundenkartei
         public string Stadt { get; set; }
         public string Email { get; set; }
         public string Geburtstag { get; set; }
-        public string Notizen { get; set; }
+        public string Notizen { get; set; } 
+        #endregion
+
+        #region Constructors
 
         public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email, string notizen)
         {
@@ -71,6 +75,10 @@ namespace Kundenkartei
         {
         }
 
+        #endregion
+
+        #region Methods
+
         public void WriteKundeToDB()
         {
             SqliteDataAccess.CreateKunde(this);
@@ -80,5 +88,7 @@ namespace Kundenkartei
         {
             return String.Format("{0} {1} {2}", KundenNr, Name, Telefon);
         }
+
+        #endregion
     }
 }

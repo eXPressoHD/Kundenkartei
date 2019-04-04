@@ -12,11 +12,15 @@ namespace Kundenkartei
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
+        //Static logger class, TODO: Instead use Diagnostics with NLog Listener in config
         private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
+        //Static object to access from all forms
         public static MainForm Self;
-
        
+        /// <summary>
+        /// Main Constructor
+        /// </summary>
         public MainForm()
         {
             Self = this;
@@ -27,12 +31,20 @@ namespace Kundenkartei
             metroListView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
         }
 
+        /// <summary>
+        /// Neuen Kunden hinzufügen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateKunde_Click(object sender, EventArgs e)
         {
             AddCustomerForm kundenForm = new AddCustomerForm();
             kundenForm.Show();
         }
 
+        /// <summary>
+        /// Lookup all Customers in DB an display them in ListView
+        /// </summary>
         private void FillCustomerList()
         {
             List<Kunde> kundenListe = new List<Kunde>();
@@ -82,6 +94,33 @@ namespace Kundenkartei
                 }
             }
         }
+
+        enum SqlFunction { terminDienstleistung = 1 };
+
+        //Test to replace this mess below...  (TODO: Use Metadata?)
+        private string GetInformation(KeyValuePair<Kunde, String> keyPair, char auswahl)
+        {
+
+            //Switchcase to determine which method...
+            switch(auswahl)
+            {
+                case (char)SqlFunction.terminDienstleistung:
+                break;
+                    
+            }
+
+            //call method with 
+            // DataTable tab = SqliteDataAccess....(keyPair.Key, keyPair.Value);
+            //if (tab.Rows.Count > 0)
+            //{
+            //    return tab.Rows[0].ItemArray[0].ToString();
+            //} else {
+            //    return String.Empty;
+            //}
+
+            return String.Empty;
+        }
+        
 
         private string GetDate(Kunde s, string date)
         {
@@ -162,39 +201,17 @@ namespace Kundenkartei
             }
         }
 
-
-
         private void Main_Activated(object sender, EventArgs e)
         {
             metroListView1.Items.Clear();
             FillCustomerList();
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            if (metroListView1.CheckedItems.Count == 1)
-            {
-                try
-                {
-                    int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
-                    DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                    EditCustomerForm form = new EditCustomerForm();
-                    form.TextBoxKundenNr.Text = kundenNr.ToString();
-                    form.TextBoxName.Text = kunde.Rows[0].ItemArray[1].ToString();
-                    form.TextBoxTelefon.Text = kunde.Rows[0].ItemArray[2].ToString();
-                    form.Show();
-                }
-                catch (Exception ex)
-                {
-                    _logger.Error(ex);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Bitte einen Kunden auswählen");
-            }
-        }
-
+        /// <summary>
+        /// Ausgewählten Kunden löschen mit vorheriger Frage ob man ihn löschen will
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void metroButton2_Click(object sender, EventArgs e)
         {
             if (metroListView1.CheckedItems.Count == 1)
@@ -209,16 +226,15 @@ namespace Kundenkartei
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    //do something else
-                }
-                
+                    //do nothing
+                }                
             }
             else
             {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
         }
-
+        
         private void tbKundenName_TextChanged(object sender, EventArgs e)
         {
             if (tbKundenName.Text != "")
@@ -248,11 +264,6 @@ namespace Kundenkartei
             }
         }
 
-        private void metroButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ClearSearch_Click(object sender, EventArgs e)
         {
             tbKundenName.Text = String.Empty;
@@ -266,8 +277,6 @@ namespace Kundenkartei
 
         private void metroButton3_Click_1(object sender, EventArgs e)
         {
-
-
             if (metroListView1.CheckedItems.Count == 1)
             {
                 try
@@ -296,6 +305,12 @@ namespace Kundenkartei
             this.Activate();
         }
 
+
+        /// <summary>
+        /// Kundeninformationen anzeigen anhand der ID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void metroButton4_Click(object sender, EventArgs e)
         {
             if (metroListView1.CheckedItems.Count == 1)
@@ -387,6 +402,11 @@ namespace Kundenkartei
             }
         }
 
+        /// <summary>
+        /// Close Applictation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void metroButton7_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
