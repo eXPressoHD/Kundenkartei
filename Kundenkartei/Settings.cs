@@ -21,20 +21,26 @@ namespace Kundenkartei
         //Vollbild
         private void ckbxFullScreen_CheckedChanged(object sender, EventArgs e)
         {
-            if(ckbxFullScreen.Checked)
-            {
-                ChangeFullscreenMode("1");
-            } else {
-                ChangeFullscreenMode("0");
-            }
+            if (ckbxFullScreen.Checked)
+            { ChangeFullscreenMode(true); } else { ChangeFullscreenMode(false); }
         }
+        
 
-        private void ChangeFullscreenMode(string parameter)
+        private void ChangeFullscreenMode(bool parameter)
         {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Fullscreen"].Value = parameter;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
+            //if (parameter)
+            //{
+            //    MainForm.Self.WindowState = FormWindowState.Normal;
+            //    MainForm.Self.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //    MainForm.Self.Bounds = Screen.PrimaryScreen.Bounds;
+            //}
+            //else
+            //{
+            //    MainForm.Self.WindowState = FormWindowState.Maximized;
+            //    MainForm.Self.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            //    MainForm.Self.SetBounds(0, 0, 1360, 720);
+            //    this.Close();
+            //}
         }
 
         private void Settings_Load(object sender, EventArgs e)

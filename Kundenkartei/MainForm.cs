@@ -14,8 +14,12 @@ namespace Kundenkartei
     {
         private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
+        public static MainForm Self;
+
+       
         public MainForm()
         {
+            Self = this;
             InitializeComponent();
             TodayDatetime.Text = DateTime.Now.ToString("dd.MM.yyyy");
             metroRadioButton1.Checked = false;
@@ -289,10 +293,6 @@ namespace Kundenkartei
 
         private void Main_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Fullscreen"].ToString()) == 1)
-            {
-                this.SetBounds(Screen.AllScreens[0].WorkingArea.X, Screen.AllScreens[0].WorkingArea.Y, Screen.AllScreens[0].WorkingArea.Width, Screen.AllScreens[0].WorkingArea.Height);
-            }
             this.Activate();
         }
 
