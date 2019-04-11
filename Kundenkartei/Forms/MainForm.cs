@@ -303,6 +303,7 @@ namespace Kundenkartei
         private void Main_Load(object sender, EventArgs e)
         {
             this.Activate();
+            _logger.Debug("Application started...");
         }
 
 
