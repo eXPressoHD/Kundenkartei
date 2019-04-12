@@ -230,5 +230,13 @@ namespace Kundenkartei
             labGesamtSumme.Text = "";
             richTextBoxToday.Clear();
         }
+
+        private void btnSaveHistory_Click(object sender, EventArgs e)
+        {
+            int id = (int)this.Tag;
+            string updateText = richTextBox1.Text;
+            SqliteDataAccess.UpdateKundenNotizen(id, updateText);
+            MessageBox.Show("Historie aktualisiert");
+        }
     }
 }

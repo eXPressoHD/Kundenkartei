@@ -424,6 +424,26 @@ namespace Kundenkartei
             }
         }
 
+        public static void UpdateKundenNotizen(int kundenNr, string updateText)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
+            {
+                con.Open();
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Notizen = @notizen WHERE KundenNr = @kundenNr", con);
+                insertSQL.Parameters.AddWithValue("@notizen", updateText);
+                insertSQL.Parameters.AddWithValue("@kundenNr", kundenNr);
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
+            }
+        }
+
         public static DataTable LookUpKunde(string name)
         {
             DataTable kunden = new DataTable();
