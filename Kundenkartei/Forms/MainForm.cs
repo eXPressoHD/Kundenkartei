@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -91,7 +92,7 @@ namespace Kundenkartei
                 foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
                     //column.Width = -2;
-                }
+                }                
             }
         }
 
@@ -203,8 +204,10 @@ namespace Kundenkartei
 
         private void Main_Activated(object sender, EventArgs e)
         {
+            metroListView1.BeginUpdate();
             metroListView1.Items.Clear();
             FillCustomerList();
+            metroListView1.EndUpdate();
         }
 
         /// <summary>
