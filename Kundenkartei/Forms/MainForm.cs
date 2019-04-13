@@ -38,9 +38,16 @@ namespace Kundenkartei
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CreateKunde_Click(object sender, EventArgs e)
-        {
-            AddCustomerForm kundenForm = new AddCustomerForm();
-            kundenForm.Show();
+        {            
+            if ((Application.OpenForms["AddCustomerForm"] as AddCustomerForm) != null)
+            {
+                //Form is already open
+            }
+            else
+            {
+                AddCustomerForm kundenForm = new AddCustomerForm();
+                kundenForm.Show();
+            }
         }
 
         /// <summary>
@@ -326,7 +333,14 @@ namespace Kundenkartei
                     Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0]["Name"].ToString(), kunde.Rows[0]["Telefon"].ToString(), kunde.Rows[0]["Geburtstag"].ToString() ,kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(),kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
                     CustomerHistory ch = new CustomerHistory();
                     ch.Tag = k;
-                    ch.Show();
+                    if ((Application.OpenForms["CustomerHistory"] as CustomerHistory) != null)
+                    {
+                        //Form is already open
+                    }
+                    else
+                    {
+                        ch.Show();
+                    }                    
                 }
                 catch (Exception ex)
                 {
@@ -398,7 +412,15 @@ namespace Kundenkartei
                 int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                 ShowCustomerNotes n = new ShowCustomerNotes();
                 n.Tag = kundenNr;
-                n.ShowDialog();
+
+                if ((Application.OpenForms["ShowCustomerNotes"] as ShowCustomerNotes) != null)
+                {
+                    //Form is already open
+                }
+                else
+                {
+                    n.ShowDialog();
+                }
             }
             else
             {
