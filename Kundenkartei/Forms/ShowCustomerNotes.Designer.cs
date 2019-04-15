@@ -267,6 +267,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowCustomerNotes";
             this.Text = "Notizen";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.ShowCustomerNotes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

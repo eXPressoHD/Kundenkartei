@@ -378,6 +378,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCustomerForm";
             this.Text = "Kunde hinzufügen";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 
