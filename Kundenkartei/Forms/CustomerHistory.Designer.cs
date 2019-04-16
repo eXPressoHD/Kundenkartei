@@ -505,6 +505,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerHistory";
             this.Text = "Kundeninformationen";
+            this.TopMost = true;
             this.Activated += new System.EventHandler(this.CustomerHistory_Activated);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

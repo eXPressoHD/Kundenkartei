@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -269,8 +270,10 @@ namespace Kundenkartei
             }
             else
             {
+                metroListView1.BeginUpdate();
                 metroListView1.Items.Clear();
                 FillCustomerList();
+                metroListView1.EndUpdate();
             }
         }
 
@@ -435,7 +438,7 @@ namespace Kundenkartei
         /// <param name="e"></param>
         private void metroButton7_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Application.Exit();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
