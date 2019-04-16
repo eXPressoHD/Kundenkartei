@@ -9,7 +9,6 @@ namespace Kundenkartei
 {
     static class Program
     {
-
         private static Mutex m_Mutex;
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
@@ -22,7 +21,7 @@ namespace Kundenkartei
 
 
             bool createdNew;
-            m_Mutex = new Mutex(true, "MyApplicationMutex", out createdNew);
+            m_Mutex = new Mutex(true, "Kundenkartei", out createdNew);
             if (createdNew)
                 Application.Run(new MainForm());
             else
