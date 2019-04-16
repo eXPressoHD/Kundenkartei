@@ -438,7 +438,7 @@ namespace Kundenkartei
         /// <param name="e"></param>
         private void metroButton7_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Application.Exit();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
