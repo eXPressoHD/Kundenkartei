@@ -13,52 +13,12 @@ namespace Kundenkartei
         public string Stadt { get; set; }
         public string Email { get; set; }
         public string Geburtstag { get; set; }
-        public string Notizen { get; set; } 
+        public string Notizen { get; set; }
         #endregion
 
         #region Constructors
-
-        public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email, string notizen)
+        public Kunde()
         {
-            KundenNr = kundenNr;
-            Name = name;
-            Telefon = telefon;
-            Strasse = strasse;
-            Plz = plz;
-            Stadt = stadt;
-            Email = email;
-            Geburtstag = geburtstag;
-            Notizen = notizen;
-        }
-
-        public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email)
-        {
-            KundenNr = kundenNr;
-            Name = name;
-            Telefon = telefon;
-            Strasse = strasse;
-            Plz = plz;
-            Stadt = stadt;
-            Email = email;
-            Geburtstag = geburtstag;
-        }
-
-        public Kunde(int kundenNr, string name, string telefon, string strasse, string plz, string stadt, string email)
-        {
-            KundenNr = kundenNr;
-            Name = name;
-            Telefon = telefon;
-            Strasse = strasse;
-            Plz = plz;
-            Stadt = stadt;
-            Email = email;
-        }
-
-        public Kunde(int kundenNr, string name, string telefon)
-        {
-            KundenNr = kundenNr;
-            Name = name;
-            Telefon = telefon;
         }
 
         public Kunde(string name, string telefon)
@@ -67,8 +27,31 @@ namespace Kundenkartei
             Telefon = telefon;
         }
 
-        public Kunde()
+        public Kunde(int kundenNr, string name, string telefon)
+            :this(name, telefon)
         {
+            KundenNr = kundenNr;
+        }
+
+        public Kunde(int kundenNr, string name, string telefon, string strasse, string plz, string stadt, string email)
+            :this(kundenNr, name, telefon)
+        {
+            Strasse = strasse;
+            Plz = plz;
+            Stadt = stadt;
+            Email = email;
+        }
+
+        public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email)
+            :this(kundenNr, name, telefon, strasse, plz, stadt, email)
+        {
+            Geburtstag = geburtstag;
+        }
+
+        public Kunde(int kundenNr, string name, string telefon, string geburtstag, string strasse, string plz, string stadt, string email, string notizen)
+            :this(kundenNr, name, telefon, geburtstag, strasse, plz, stadt, email)
+        {
+            Notizen = notizen;
         }
 
         #endregion

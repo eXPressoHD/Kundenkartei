@@ -12,23 +12,22 @@
 
         #endregion
 
-        #region Constructors
-        public Termin(int terminNr, string datum, string dienstleistung, string mitarbeiter, int kundenNr)
+        #region Constructors        
+
+        public Termin(string datum, string dienstleistung, string mitarbeiter, int kundenNr)             
         {
-            TerminNr = terminNr;
             Datum = datum;
             Dienstleistung = dienstleistung;
             Mitarbeiter = mitarbeiter;
             KundenNr = kundenNr;
         }
 
-        public Termin(string datum, string dienstleistung, string mitarbeiter, int kundenNr)
+        public Termin(int terminNr, string datum, string dienstleistung, string mitarbeiter, int kundenNr)
+            :this(datum, dienstleistung, mitarbeiter, kundenNr)
         {
-            Datum = datum;
-            Dienstleistung = dienstleistung;
-            Mitarbeiter = mitarbeiter;
-            KundenNr = kundenNr;
+            TerminNr = terminNr;
         }
+
 
         #endregion
 
