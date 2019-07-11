@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
@@ -9,10 +10,56 @@ namespace Kundenkartei
     {
         private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private static string LoadConnectionString(string id = "Default")
+        private static string _conString;
+
+        public static string ConnectionString
         {
+            get { return _conString; }
+            set { _conString = value; }
+        }
+
+        private static string LoadConnectionString(string id = "Default")
+        {            
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
+
+        /// <summary>
+        /// New helper method instead of reusing code..
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        //public static DataTable Query(string sql, params object[] parameters)
+        //{
+        //    IDictionary<string, object> dic = new Dictionary<string, object>();
+        //    var dt = new DataTable();
+        //    using (var da = new SQLiteCommand(sql, _conString))
+        //    {
+        //        for (int i = 0; i < parameters.Length; i++)
+        //        {
+        //            for (int j = 1; j < parameters.Length; j += 2)
+        //            {
+        //                KeyValuePair<string, object> vp = new KeyValuePair<string, object>(parameters[i].ToString(), parameters[j]);
+        //                dic.Add(vp);
+        //            }
+        //        }
+        //        foreach (KeyValuePair<string, object> pair in dic)
+        //        {
+        //            //da.comman.Parameters.AddWithValue(pair.Key, pair.Value);
+        //        }
+        //        try
+        //        {
+        //            da.Fill(dt);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //    }
+        //    return dt;
+        //}
+
+
 
         public static DataTable GetKundenBirthday(Kunde k)
         {
@@ -207,7 +254,7 @@ namespace Kundenkartei
                 throw new Exception(e.Message);
             }
             return dt;
-        }
+        }        
 
         public static DataTable GetKundenTerminAndDienstleistung(Kunde k, string date)
         {
@@ -444,6 +491,26 @@ namespace Kundenkartei
             }
         }
 
+        public static void UpdateKundenChanges(int kundenNr, string changes)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
+            {
+                con.Open();
+                SQLiteCommand insertSQL = new SQLiteCommand("Update Kunden SET Changes = @changes WHERE KundenNr = @kundenNr", con);
+                insertSQL.Parameters.AddWithValue("@changes", changes);
+                insertSQL.Parameters.AddWithValue("@kundenNr", kundenNr);
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
+            }
+        }
+
         public static DataTable LookUpKunde(string name)
         {
             DataTable kunden = new DataTable();
@@ -499,6 +566,35 @@ namespace Kundenkartei
             }
             return notes;
         }
+
+        public static DataTable GetKundenChanges(int kNr)
+        {
+            DataTable changeNotes = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    {
+                        cmd.CommandText = "SELECT Changes FROM Kunden WHERE KundenNr = @kundenNr";
+                        cmd.Parameters.AddWithValue("@kundenNr", kNr);
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            changeNotes.Load(reader);
+                            reader.Close();
+                        }
+                    }
+                    cnn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return changeNotes;
+        }
+
 
         public static int GetLatestKundenNr()
         {

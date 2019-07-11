@@ -83,10 +83,13 @@ namespace Kundenkartei
 
         private void ShowCustomerNotes_Load(object sender, EventArgs e)
         {
+            TabControl.SelectedTab = metroTabPage1;
             int id = (int)this.Tag;
             DataTable kunde = SqliteDataAccess.GetKundeById(id);
             Kunde k = new Kunde(Convert.ToInt32(id), kunde.Rows[0].ItemArray[1].ToString(), kunde.Rows[0].ItemArray[2].ToString());
             labName.Text = k.Name;
+            labNameTab2.Text = k.Name;
+            labKNrTab2.Text = id.ToString();
             labKundenNr.Text = id.ToString();
             FetchNotes();
             customerTypeChoose.Text = "Damen";
@@ -96,8 +99,11 @@ namespace Kundenkartei
         {
             int nr = (int)this.Tag;
             DataTable notes = SqliteDataAccess.GetKundenNotes(nr);
+            DataTable changes = SqliteDataAccess.GetKundenChanges(nr);
             string text = notes.Rows[0].ItemArray[0].ToString();
+            string changesText = changes.Rows[0].ItemArray[0].ToString();
             richTextBox1.Text = text;
+            rtbChanges.Text = changesText;
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -237,6 +243,19 @@ namespace Kundenkartei
             string updateText = richTextBox1.Text;
             SqliteDataAccess.UpdateKundenNotizen(id, updateText);
             MessageBox.Show("Historie aktualisiert");
+        }
+
+        private void BtnSaveChanges_Click(object sender, EventArgs e)
+        {
+            int id = (int)this.Tag;
+            string changesText = rtbChanges.Text;
+            SqliteDataAccess.UpdateKundenChanges(id, changesText);
+            MessageBox.Show("Änderungen gespeichert");
+        }
+
+        private void B_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

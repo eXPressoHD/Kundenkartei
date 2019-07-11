@@ -31,9 +31,12 @@
 
         #endregion
 
+        #region Methods
         public void WriteTerminToDB()
         {
             SqliteDataAccess.CreateTermin(this);
         }
+
+        #endregion 
     }
 }
