@@ -167,7 +167,7 @@ namespace Kundenkartei
                 DialogResult dialogResult = MessageBox.Show("Kunde wirklich löschen?", "Kunde löschen", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SqliteDataAccess.DeleteKunde(kundenNr);
+                    SqliteDataAccess.ExecuteNonQuery("DELETE FROM Kunden WHERE KundenNr = @kundenNr", "kundenNr", kundenNr);
                     metroListView1.Items.Clear();
                     FillCustomerList();
                 }

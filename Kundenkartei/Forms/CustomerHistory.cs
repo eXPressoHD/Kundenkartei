@@ -59,7 +59,12 @@ namespace Kundenkartei
         private List<string> GetAdditionalInformation(Kunde s, string colName)
         {
             List<String> li = new List<string>();
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistungAll(s);
+            DataTable tab = SqliteDataAccess.Query(@"SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter
+                                                     FROM Kunden k
+                                                     Inner Join Termine t
+                                                     ON k.KundenNr = t.KundenNr
+                                                      WHERE k.KundenNr = @kundenNr
+                                                      ORDER BY t.Datum DESC", "kundenNr", s.KundenNr);
             if (tab.Rows.Count > 0)
             {
                 foreach (DataRow row in tab.Rows)

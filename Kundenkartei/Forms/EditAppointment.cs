@@ -47,8 +47,8 @@ namespace Kundenkartei
             string fullDate = String.Format("{0} {1}", dateTimePicker1.Value.ToString("dd.MM.yyyy"), dateTimePicker2.Value.ToString("HH:mm"));
             Termin t = new Termin(Convert.ToInt32(tbTerminNr.Text), fullDate, metroTextBox1.Text, tbMitarbeiter.Text, Convert.ToInt32(tbKundenNr.Text));
             try
-            {                
-                SqliteDataAccess.DeleteTermin(t);
+            {
+                SqliteDataAccess.ExecuteNonQuery("DELETE FROM Termine WHERE TerminNr = @terminNr", "terminNr", t);
                 this.Close();
             }
             catch (Exception ex)

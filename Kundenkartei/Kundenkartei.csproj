@@ -143,7 +143,7 @@
     <Compile Include="Forms\EditAppointment.Designer.cs">
       <DependentUpon>EditAppointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Kunde.cs" />
+    <Compile Include="Business Objects\Kunde.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,7 +171,7 @@
       <DependentUpon>ShowCustomerNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="Utility\SqliteDataAccess.cs" />
-    <Compile Include="Common\Termin.cs" />
+    <Compile Include="Business Objects\Termin.cs" />
     <EmbeddedResource Include="Forms\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
