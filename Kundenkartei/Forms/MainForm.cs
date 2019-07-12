@@ -19,7 +19,7 @@ namespace Kundenkartei
 
         //Static object to access from all forms
         public static MainForm Self;
-       
+
         /// <summary>
         /// Main Constructor
         /// </summary>
@@ -39,7 +39,7 @@ namespace Kundenkartei
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CreateKunde_Click(object sender, EventArgs e)
-        {            
+        {
             if ((Application.OpenForms["AddCustomerForm"] as AddCustomerForm) != null)
             {
                 //Form is already open
@@ -60,11 +60,12 @@ namespace Kundenkartei
             DataTable table = new DataTable();
             if (!metroRadioButton1.Checked)
             {
-                table = SqliteDataAccess.GetKundenData();
+                // table = SqliteDataAccess.GetKundenData();
+                table = SqliteDataAccess.Query("SELECT * FROM KUNDEN");
             }
             else
             {
-                table = SqliteDataAccess.GetKundenDataToday();
+                table = SqliteDataAccess.Query(@"SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @today ORDER BY t.Datum asc", "today", String.Format("%" + DateTime.Today.ToString("dd.MM.yyyy") + "%"));
             }
             foreach (DataRow row in table.Rows)
             {
@@ -91,122 +92,57 @@ namespace Kundenkartei
 
                 item.SubItems.Add(s.KundenNr.ToString());
                 item.SubItems.Add(s.Telefon);
-               // item.SubItems.Add(GetDate(s, sqlFormat));
-                item.SubItems.Add(GetBirthday(s));
-                item.SubItems.Add(GetAdresse(s));
-                item.SubItems.Add(GetEmail(s));
-                //item.SubItems.Add(GetMitarbeiter(s, sqlFormat));
+                item.SubItems.Add(ReturnSingleValue(s, "Geburtstag", SqlFunction.Birthday));
+                item.SubItems.Add(ReturnSingleValue(s, "Adresse", SqlFunction.Adress));
+                item.SubItems.Add(ReturnSingleValue(s, "Email", SqlFunction.Email));
                 metroListView1.Items.Add(item);
                 foreach (ColumnHeader column in metroListView1.Columns) //Set width of columns automatically
                 {
                     //column.Width = -2;
-                }                
+                }
             }
         }
 
-        enum SqlFunction { terminDienstleistung = 1 };
+        enum SqlFunction { terminDienstleistung = 1, Birthday = 2, Adress = 3, Email = 4 };
 
-        //Test to replace this mess below...  (TODO: Use Metadata?)
-        private string GetInformation(KeyValuePair<Kunde, String> keyPair, char auswahl)
+        private string ReturnSingleValue(Kunde k, string columnName, SqlFunction function)
         {
+            DataTable dt = new DataTable();
 
-            //Switchcase to determine which method...
-            switch(auswahl)
+            switch(function)
             {
-                case (char)SqlFunction.terminDienstleistung:
-                break;
-                    
+                case SqlFunction.Birthday:
+                    dt = SqliteDataAccess.Query(@"SELECT Geburtstag 
+                                                  FROM Kunden 
+                                                  WHERE KundenNr = @kundenNr", "kundenNr", k.KundenNr);
+                    break;
+                case SqlFunction.Adress:
+                    dt = SqliteDataAccess.Query(@"SELECT Strasse, PLZ, Stadt
+                                                  FROM Kunden 
+                                                  WHERE KundenNr = @kundenNr", "kundenNr", k.KundenNr);
+                    break;
+                case SqlFunction.Email:
+                    dt = SqliteDataAccess.Query(@"SELECT Email 
+                                                  FROM Kunden 
+                                                  WHERE KundenNr = @kundenNr", "kundenNr", k.KundenNr);
+                    break;
             }
 
-            //call method with 
-            // DataTable tab = SqliteDataAccess....(keyPair.Key, keyPair.Value);
-            //if (tab.Rows.Count > 0)
-            //{
-            //    return tab.Rows[0].ItemArray[0].ToString();
-            //} else {
-            //    return String.Empty;
-            //}
 
-            return String.Empty;
-        }
-        
-
-        private string GetDate(Kunde s, string date)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
-            if (tab.Rows.Count > 0)
+            if (columnName != "Adresse")
             {
-                return tab.Rows[0].ItemArray[0].ToString();
-            }
-            else
+                if (dt.Rows.Count == 1)
+                {
+                    return dt.Rows[0][columnName].ToString();
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            } else
             {
-                return "";
-            }
-        }
-
-        private string GetBirthday(Kunde s)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenBirthday(s);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0].ItemArray[0].ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GetDienstLeistung(Kunde s, string date)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0].ItemArray[1].ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GetMitarbeiter(Kunde s, string date)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenTerminAndDienstleistung(s, date);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0].ItemArray[2].ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GetAdresse(Kunde s)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenAdresse(s);
-            if (tab.Rows.Count > 0)
-            {
-                string adresse = tab.Rows[0]["Strasse"].ToString() + " " + tab.Rows[0]["PLZ"].ToString() + " " + tab.Rows[0]["Stadt"].ToString();
+                string adresse = dt.Rows[0]["Strasse"].ToString() + " " + dt.Rows[0]["PLZ"].ToString() + " " + dt.Rows[0]["Stadt"].ToString();
                 return adresse;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GetEmail(Kunde s)
-        {
-            DataTable tab = SqliteDataAccess.GetKundenEmail(s);
-            if (tab.Rows.Count > 0)
-            {
-                return tab.Rows[0]["Email"].ToString();
-            }
-            else
-            {
-                return "";
             }
         }
 
@@ -230,7 +166,7 @@ namespace Kundenkartei
                 string kundenNr = metroListView1.CheckedItems[0].SubItems[1].Text;
                 DialogResult dialogResult = MessageBox.Show("Kunde wirklich löschen?", "Kunde löschen", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
-                {                    
+                {
                     SqliteDataAccess.DeleteKunde(kundenNr);
                     metroListView1.Items.Clear();
                     FillCustomerList();
@@ -238,14 +174,14 @@ namespace Kundenkartei
                 else if (dialogResult == DialogResult.No)
                 {
                     //do nothing
-                }                
+                }
             }
             else
             {
                 MessageBox.Show("Bitte einen Kunden auswählen");
             }
         }
-        
+
         private void tbKundenName_TextChanged(object sender, EventArgs e)
         {
             if (tbKundenName.Text != "")
@@ -333,7 +269,7 @@ namespace Kundenkartei
                 {
                     int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
                     DataTable kunde = SqliteDataAccess.GetKundeById(kundenNr);
-                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0]["Name"].ToString(), kunde.Rows[0]["Telefon"].ToString(), kunde.Rows[0]["Geburtstag"].ToString() ,kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(),kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
+                    Kunde k = new Kunde(Convert.ToInt32(kundenNr), kunde.Rows[0]["Name"].ToString(), kunde.Rows[0]["Telefon"].ToString(), kunde.Rows[0]["Geburtstag"].ToString(), kunde.Rows[0]["Strasse"].ToString(), kunde.Rows[0]["PLZ"].ToString(), kunde.Rows[0]["Stadt"].ToString(), kunde.Rows[0]["Email"].ToString());
                     CustomerHistory ch = new CustomerHistory();
                     ch.Tag = k;
                     if ((Application.OpenForms["CustomerHistory"] as CustomerHistory) != null)
@@ -343,7 +279,7 @@ namespace Kundenkartei
                     else
                     {
                         ch.Show();
-                    }                    
+                    }
                 }
                 catch (Exception ex)
                 {

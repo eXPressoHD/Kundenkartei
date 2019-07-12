@@ -17,8 +17,8 @@ namespace Kundenkartei
         {
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
-            
-            table = SqliteDataAccess.GetKundenDataOnDate(dateTimePicker1.Value);
+
+            table = SqliteDataAccess.Query("SELECT * FROM Kunden k INNER JOIN Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @date  ORDER BY t.Datum asc", "date", String.Format("%" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "%"));
             foreach (DataRow row in table.Rows)
             {
                 Kunde k = new Kunde();

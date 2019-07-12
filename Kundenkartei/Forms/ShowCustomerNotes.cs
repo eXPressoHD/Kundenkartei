@@ -30,7 +30,7 @@ namespace Kundenkartei
         private void FetchTypes()
         {
             List<String> types = new List<string>();
-            DataTable tab = SqliteDataAccess.GetCustomerTypes();
+            DataTable tab = SqliteDataAccess.Query("SELECT DISTINCT Typ FROM Preisliste");
             foreach (DataRow row in tab.Rows)
             {
                 types.Add(row["Typ"].ToString());
@@ -48,13 +48,13 @@ namespace Kundenkartei
 
             if (box.Text == "Herren")
             {
-                preisTab = SqliteDataAccess.GetPriceList("Herren");
+                preisTab = SqliteDataAccess.Query("SELECT Titel, Preis FROM Preisliste WHERE Typ = @typ", "typ", "Herren");
             } else if (box.Text == "Damen")
             {
-                preisTab = SqliteDataAccess.GetPriceList("Damen");
+                preisTab = SqliteDataAccess.Query("SELECT Titel, Preis FROM Preisliste WHERE Typ = @typ", "typ", "Damen");
             } else if (box.Text == "Kids")
             {
-                preisTab = SqliteDataAccess.GetPriceList("Kids");
+                preisTab = SqliteDataAccess.Query("SELECT Titel, Preis FROM Preisliste WHERE Typ = @typ", "typ", "Kids");
             }
 
             foreach (DataRow row in preisTab.Rows)
@@ -98,8 +98,8 @@ namespace Kundenkartei
         private void FetchNotes()
         {
             int nr = (int)this.Tag;
-            DataTable notes = SqliteDataAccess.GetKundenNotes(nr);
-            DataTable changes = SqliteDataAccess.GetKundenChanges(nr);
+            DataTable notes = SqliteDataAccess.Query("SELECT Notizen FROM Kunden WHERE KundenNr = @kundenNr", "kundenNr", nr);
+            DataTable changes = SqliteDataAccess.Query("SELECT Changes FROM Kunden WHERE KundenNr = @kundenNr", "kundenNr",nr);
             string text = notes.Rows[0].ItemArray[0].ToString();
             string changesText = changes.Rows[0].ItemArray[0].ToString();
             richTextBox1.Text = text;

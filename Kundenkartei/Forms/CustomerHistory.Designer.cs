@@ -71,6 +71,7 @@
             this.columnHeader5,
             this.columnHeader6});
             this.metroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.metroListView1.HideSelection = false;
             this.metroListView1.Location = new System.Drawing.Point(0, 30);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
@@ -507,6 +508,7 @@
             this.Text = "Kundeninformationen";
             this.TopMost = true;
             this.Activated += new System.EventHandler(this.CustomerHistory_Activated);
+            this.Load += new System.EventHandler(this.CustomerHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

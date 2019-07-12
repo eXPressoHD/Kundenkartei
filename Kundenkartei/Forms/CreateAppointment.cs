@@ -48,8 +48,9 @@ namespace Kundenkartei
         {
             List<Kunde> kundenListe = new List<Kunde>();
             DataTable table = new DataTable();
-            table = SqliteDataAccess.GetKundenData();
-            
+            table = SqliteDataAccess.Query("SELECT * FROM Kunden");
+
+
             foreach (DataRow row in table.Rows)
             {
                 Kunde k = new Kunde

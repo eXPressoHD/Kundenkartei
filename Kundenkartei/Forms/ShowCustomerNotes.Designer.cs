@@ -51,14 +51,14 @@
             this.TabControl = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.rtbChanges = new System.Windows.Forms.RichTextBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.b = new MetroFramework.Controls.MetroButton();
+            this.btnSaveChanges = new MetroFramework.Controls.MetroButton();
             this.labKNrTab2 = new MetroFramework.Controls.MetroLabel();
             this.labNameTab2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
-            this.b = new MetroFramework.Controls.MetroButton();
-            this.btnSaveChanges = new MetroFramework.Controls.MetroButton();
+            this.rtbChanges = new System.Windows.Forms.RichTextBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.TabControl.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -139,9 +139,9 @@
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(199, 603);
+            this.btnPrint.Location = new System.Drawing.Point(207, 598);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(161, 45);
+            this.btnPrint.Size = new System.Drawing.Size(161, 50);
             this.btnPrint.TabIndex = 25;
             this.btnPrint.Text = "Drucken";
             this.btnPrint.UseSelectable = true;
@@ -165,7 +165,7 @@
             // metroButton2
             // 
             this.metroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton2.Location = new System.Drawing.Point(10, 603);
+            this.metroButton2.Location = new System.Drawing.Point(10, 598);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(168, 49);
             this.metroButton2.TabIndex = 26;
@@ -229,7 +229,7 @@
             // btnCloseWindow
             // 
             this.btnCloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseWindow.Location = new System.Drawing.Point(827, 603);
+            this.btnCloseWindow.Location = new System.Drawing.Point(827, 598);
             this.btnCloseWindow.Name = "btnCloseWindow";
             this.btnCloseWindow.Size = new System.Drawing.Size(161, 49);
             this.btnCloseWindow.TabIndex = 32;
@@ -322,25 +322,27 @@
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
-            // rtbChanges
+            // b
             // 
-            this.rtbChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.rtbChanges.Location = new System.Drawing.Point(10, 105);
-            this.rtbChanges.Name = "rtbChanges";
-            this.rtbChanges.Size = new System.Drawing.Size(487, 481);
-            this.rtbChanges.TabIndex = 29;
-            this.rtbChanges.Text = "";
+            this.b.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.b.Location = new System.Drawing.Point(827, 599);
+            this.b.Name = "b";
+            this.b.Size = new System.Drawing.Size(161, 46);
+            this.b.TabIndex = 36;
+            this.b.Text = "Schließen";
+            this.b.UseSelectable = true;
+            this.b.Click += new System.EventHandler(this.B_Click);
             // 
-            // metroLabel6
+            // btnSaveChanges
             // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel6.Location = new System.Drawing.Point(10, 77);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(114, 25);
-            this.metroLabel6.TabIndex = 30;
-            this.metroLabel6.Text = "Änderungen:";
+            this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveChanges.Location = new System.Drawing.Point(10, 599);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(168, 46);
+            this.btnSaveChanges.TabIndex = 35;
+            this.btnSaveChanges.Text = "Änderungen speichern";
+            this.btnSaveChanges.UseSelectable = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.BtnSaveChanges_Click);
             // 
             // labKNrTab2
             // 
@@ -382,27 +384,25 @@
             this.metroLabel10.TabIndex = 31;
             this.metroLabel10.Text = "Name:";
             // 
-            // b
+            // rtbChanges
             // 
-            this.b.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b.Location = new System.Drawing.Point(827, 603);
-            this.b.Name = "b";
-            this.b.Size = new System.Drawing.Size(161, 49);
-            this.b.TabIndex = 36;
-            this.b.Text = "Schließen";
-            this.b.UseSelectable = true;
-            this.b.Click += new System.EventHandler(this.B_Click);
+            this.rtbChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.rtbChanges.Location = new System.Drawing.Point(10, 105);
+            this.rtbChanges.Name = "rtbChanges";
+            this.rtbChanges.Size = new System.Drawing.Size(487, 481);
+            this.rtbChanges.TabIndex = 29;
+            this.rtbChanges.Text = "";
             // 
-            // btnSaveChanges
+            // metroLabel6
             // 
-            this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveChanges.Location = new System.Drawing.Point(10, 603);
-            this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(168, 49);
-            this.btnSaveChanges.TabIndex = 35;
-            this.btnSaveChanges.Text = "Änderungen speichern";
-            this.btnSaveChanges.UseSelectable = true;
-            this.btnSaveChanges.Click += new System.EventHandler(this.BtnSaveChanges_Click);
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel6.Location = new System.Drawing.Point(10, 77);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(114, 25);
+            this.metroLabel6.TabIndex = 30;
+            this.metroLabel6.Text = "Änderungen:";
             // 
             // ShowCustomerNotes
             // 
@@ -412,6 +412,7 @@
             this.Controls.Add(this.TabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowCustomerNotes";
+            this.Resizable = false;
             this.Text = "Notizen";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ShowCustomerNotes_Load);

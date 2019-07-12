@@ -24,181 +24,52 @@ namespace Kundenkartei
         }
 
         /// <summary>
-        /// New helper method instead of reusing code..
+        /// DB Query
         /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        //public static DataTable Query(string sql, params object[] parameters)
-        //{
-        //    IDictionary<string, object> dic = new Dictionary<string, object>();
-        //    var dt = new DataTable();
-        //    using (var da = new SQLiteCommand(sql, _conString))
-        //    {
-        //        for (int i = 0; i < parameters.Length; i++)
-        //        {
-        //            for (int j = 1; j < parameters.Length; j += 2)
-        //            {
-        //                KeyValuePair<string, object> vp = new KeyValuePair<string, object>(parameters[i].ToString(), parameters[j]);
-        //                dic.Add(vp);
-        //            }
-        //        }
-        //        foreach (KeyValuePair<string, object> pair in dic)
-        //        {
-        //            //da.comman.Parameters.AddWithValue(pair.Key, pair.Value);
-        //        }
-        //        try
-        //        {
-        //            da.Fill(dt);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message);
-        //        }
-        //    }
-        //    return dt;
-        //}
-
-
-
-        public static DataTable GetKundenBirthday(Kunde k)
+        /// <param name="sql">SQL Statement</param>
+        /// <param name="parameters">Key-Value Pair PARAMETERNAME, PARAMETER</param>
+        /// <returns>Returns Datatable with SQL result</returns>
+        public static DataTable Query(string sql, params object[] parameters)
         {
-            DataTable dt = new DataTable();
-            try
+            IDictionary<string, object> dic = new Dictionary<string, object>();
+            var dt = new DataTable();
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                cnn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sql;
+                    for (int i = 0; i < parameters.Length; i++)
                     {
-                        cmd.CommandText = "SELECT Geburtstag FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
+                        for (int j = 1; j < parameters.Length; j += 2)
+                        {
+                            KeyValuePair<string, object> vp = new KeyValuePair<string, object>(parameters[i].ToString(), parameters[j]);
+                            dic.Add(vp);
+                        }
+                    }
+                    foreach (KeyValuePair<string, object> pair in dic)
+                    {
+                        cmd.Parameters.Add(new SQLiteParameter(pair.Key, pair.Value));
+                    }
+                    try
+                    {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             dt.Load(reader);
                             reader.Close();
                         }
                     }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
-
-        public static DataTable GetKundenData()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                    catch (Exception ex)
                     {
-                        cmd.CommandText = "SELECT * FROM Kunden";//order by termin sysdate...
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
+                        _logger.Error(ex.Message);
                     }
                     cnn.Close();
                 }
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
             return dt;
         }
 
-
-        public static DataTable GetKundenDataToday() //Termine am selben Tag
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT * FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @today ORDER BY t.Datum asc";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@today",  "%" + DateTime.Today.ToString("dd.MM.yyyy") + "%");
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
-
-        public static DataTable GetCustomerTypes()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT DISTINCT Typ FROM Preisliste";
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
-
-        public static DataTable GetPriceList(string para)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT Titel, Preis FROM Preisliste WHERE Typ = @typ";
-                        cmd.Parameters.AddWithValue("@typ", para);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
 
         public static DataTable GetKundenHistorie(Kunde k) //Alle Einträge eines Kunden
         {
@@ -227,34 +98,7 @@ namespace Kundenkartei
             }
             return dt;
         }
-
-        public static DataTable GetTerminInfos(Termin t) //Alle Einträge eines Kunden
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT t.TerminNR FROM Kunden k Inner join Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum = @datum";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@datum", t.Datum);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }        
+       
 
         public static DataTable GetKundenTerminAndDienstleistung(Kunde k, string date)
         {
@@ -266,7 +110,7 @@ namespace Kundenkartei
                     cnn.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                     {
-                        cmd.CommandText = "SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter FROM Kunden k Inner Join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr AND t.Datum LIKE @date";//order by termin sysdate...
+                        cmd.CommandText = "SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter FROM Kunden k Inner Join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr AND t.Datum LIKE @date";
                         cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
                         cmd.Parameters.AddWithValue("@date", date);
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -285,61 +129,6 @@ namespace Kundenkartei
             return dt;
         }
 
-        public static DataTable GetKundenAdresse(Kunde k)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT Strasse, PLZ, Stadt FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
-
-        public static DataTable GetKundenEmail(Kunde k)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT Email FROM Kunden WHERE KundenNr = @kundenNr";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
 
         public static DataTable GetKundenTerminAndDienstleistungAll(Kunde k)
         {
@@ -351,7 +140,7 @@ namespace Kundenkartei
                     cnn.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                     {
-                        cmd.CommandText = "SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter FROM Kunden k Inner Join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr ORDER BY t.Datum DESC";//order by termin sysdate...
+                        cmd.CommandText = "SELECT t.Datum, t.Dienstleistung, t.Mitarbeiter FROM Kunden k Inner Join Termine t ON k.KundenNr = t.KundenNr WHERE k.KundenNr = @kundenNr ORDER BY t.Datum DESC";
                         cmd.Parameters.AddWithValue("@kundenNr", k.KundenNr);
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
@@ -369,33 +158,6 @@ namespace Kundenkartei
             return dt;
         }
 
-        public static DataTable GetKundenDataOnDate(DateTime date) //Termine am Tag des Datepickers
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT * FROM Kunden k INNER JOIN Termine t ON k.KundenNr = t.KundenNr WHERE t.Datum Like @date  ORDER BY t.Datum asc";//order by termin sysdate...
-                        cmd.Parameters.AddWithValue("@date", "%"+ date.ToString("dd.MM.yyyy") + "%");
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            dt.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return dt;
-        }
     
 
         public static long CreateKunde(Kunde kunde)
@@ -511,89 +273,6 @@ namespace Kundenkartei
             }
         }
 
-        public static DataTable LookUpKunde(string name)
-        {
-            DataTable kunden = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT * FROM Kunden WHERE Name = @name";
-                        cmd.Parameters.AddWithValue("@name", name);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            kunden.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return kunden;
-        }
-
-        public static DataTable GetKundenNotes(int kNr)
-        {
-            DataTable notes = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT Notizen FROM Kunden WHERE KundenNr = @kundenNr";
-                        cmd.Parameters.AddWithValue("@kundenNr", kNr);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            notes.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return notes;
-        }
-
-        public static DataTable GetKundenChanges(int kNr)
-        {
-            DataTable changeNotes = new DataTable();
-            try
-            {
-                using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(cnn))
-                    {
-                        cmd.CommandText = "SELECT Changes FROM Kunden WHERE KundenNr = @kundenNr";
-                        cmd.Parameters.AddWithValue("@kundenNr", kNr);
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            changeNotes.Load(reader);
-                            reader.Close();
-                        }
-                    }
-                    cnn.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return changeNotes;
-        }
 
 
         public static int GetLatestKundenNr()

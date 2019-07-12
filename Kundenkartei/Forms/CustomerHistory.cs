@@ -71,9 +71,7 @@ namespace Kundenkartei
         }
 
         private void CustomerHistory_Activated(object sender, EventArgs e)
-        {
-            metroListView1.Items.Clear();
-            FillCustomerList();
+        {            
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
@@ -106,12 +104,20 @@ namespace Kundenkartei
         private void metroButton1_Click(object sender, EventArgs e)
         {
             //Get actual customer notes to reference while object creation
-            DataTable noteTab = SqliteDataAccess.GetKundenNotes(Convert.ToInt32(tbKundenNr.Text));
+
+            DataTable noteTab = SqliteDataAccess.Query("SELECT Notizen FROM Kunden WHERE KundenNr = @kundenNr", "kundenNr", Convert.ToInt32(tbKundenNr.Text));
             string notes = noteTab.Rows[0]["Notizen"].ToString();
             Kunde k = new Kunde(Convert.ToInt32(tbKundenNr.Text), tbName.Text, tbTelefon.Text, tbGeburtstag.Text ,tbAdresse.Text, tbPlz.Text, tbStadt.Text, tbMail.Text, notes);
             SqliteDataAccess.UpdateKunde(k);
-            MessageBox.Show("Änderungen gespeichert.");
+            //MessageBox.Show("Änderungen gespeichert.");
             this.Close();
+        }
+
+        private void CustomerHistory_Load(object sender, EventArgs e)
+        {
+            this.Activate();
+            metroListView1.Items.Clear();
+            FillCustomerList();
         }
     }
 }
