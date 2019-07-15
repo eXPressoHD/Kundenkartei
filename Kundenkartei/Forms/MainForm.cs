@@ -165,8 +165,10 @@ namespace Kundenkartei
                 if (dialogResult == DialogResult.Yes)
                 {
                     SqliteDataAccess.ExecuteNonQuery("DELETE FROM Kunden WHERE KundenNr = @kundenNr", "kundenNr", kundenNr);
+                    metroListView1.BeginUpdate();
                     metroListView1.Items.Clear();
                     FillCustomerList();
+                    metroListView1.EndUpdate();
                 }
                 else if (dialogResult == DialogResult.No)
                 {
