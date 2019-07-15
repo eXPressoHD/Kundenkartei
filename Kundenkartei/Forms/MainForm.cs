@@ -250,8 +250,9 @@ namespace Kundenkartei
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.Activate();
+            //this.Activate();
             _logger.Debug("Application started...");
+            _logger.Error("Test");
         }
 
 

@@ -51,6 +51,7 @@
             this.TabControl = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.btnAddChange = new MetroFramework.Controls.MetroButton();
             this.b = new MetroFramework.Controls.MetroButton();
             this.btnSaveChanges = new MetroFramework.Controls.MetroButton();
             this.labKNrTab2 = new MetroFramework.Controls.MetroLabel();
@@ -59,7 +60,6 @@
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.rtbChanges = new System.Windows.Forms.RichTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.btnAddChange = new MetroFramework.Controls.MetroButton();
             this.TabControl.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -324,6 +324,18 @@
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
+            // btnAddChange
+            // 
+            this.btnAddChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddChange.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnAddChange.Location = new System.Drawing.Point(460, 105);
+            this.btnAddChange.Name = "btnAddChange";
+            this.btnAddChange.Size = new System.Drawing.Size(37, 37);
+            this.btnAddChange.TabIndex = 37;
+            this.btnAddChange.Text = "+";
+            this.btnAddChange.UseSelectable = true;
+            this.btnAddChange.Click += new System.EventHandler(this.BtnAddChange_Click);
+            // 
             // b
             // 
             this.b.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -338,7 +350,7 @@
             // btnSaveChanges
             // 
             this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveChanges.Location = new System.Drawing.Point(201, 599);
+            this.btnSaveChanges.Location = new System.Drawing.Point(10, 602);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(168, 46);
             this.btnSaveChanges.TabIndex = 35;
@@ -406,26 +418,17 @@
             this.metroLabel6.TabIndex = 30;
             this.metroLabel6.Text = "Änderungen:";
             // 
-            // btnAddChange
-            // 
-            this.btnAddChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddChange.Location = new System.Drawing.Point(10, 599);
-            this.btnAddChange.Name = "btnAddChange";
-            this.btnAddChange.Size = new System.Drawing.Size(168, 46);
-            this.btnAddChange.TabIndex = 37;
-            this.btnAddChange.Text = "Änderung hinzufügen";
-            this.btnAddChange.UseSelectable = true;
-            this.btnAddChange.Click += new System.EventHandler(this.BtnAddChange_Click);
-            // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ControlBox = false;
             this.Controls.Add(this.TabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowCustomerNotes";
             this.Resizable = false;
+            this.ShowInTaskbar = false;
             this.Text = "Notizen";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ShowCustomerNotes_Load);

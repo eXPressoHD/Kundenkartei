@@ -359,6 +359,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 437);
+            this.ControlBox = false;
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.tbGeburtstag);
             this.Controls.Add(this.metroLabel7);
@@ -377,6 +378,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCustomerForm";
+            this.ShowInTaskbar = false;
             this.Text = "Kunde hinzufügen";
             this.TopMost = true;
             this.ResumeLayout(false);

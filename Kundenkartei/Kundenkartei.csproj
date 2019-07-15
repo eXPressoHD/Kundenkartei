@@ -226,7 +226,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\customer_icon_1153788_jkb_icon.ico" />
-    <Content Include="Resources\refresh.ico" />
     <Content Include="Resources\refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
