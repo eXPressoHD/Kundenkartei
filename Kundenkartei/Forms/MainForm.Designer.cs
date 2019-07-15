@@ -51,6 +51,7 @@
             this.metroButton7 = new MetroFramework.Controls.MetroButton();
             this.btnSettings = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnRefreshCustomerList = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -126,6 +127,7 @@
             this.columnHeader6});
             this.metroListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.metroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.metroListView1.HideSelection = false;
             this.metroListView1.Location = new System.Drawing.Point(23, 222);
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
@@ -225,9 +227,9 @@
             // 
             this.metroRadioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(760, 201);
+            this.metroRadioButton1.Location = new System.Drawing.Point(745, 201);
             this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(99, 15);
+            this.metroRadioButton1.Size = new System.Drawing.Size(98, 15);
             this.metroRadioButton1.TabIndex = 15;
             this.metroRadioButton1.Text = "Termine heute";
             this.metroRadioButton1.UseSelectable = true;
@@ -238,7 +240,7 @@
             // 
             this.metroRadioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(876, 201);
+            this.metroRadioButton2.Location = new System.Drawing.Point(849, 201);
             this.metroRadioButton2.Name = "metroRadioButton2";
             this.metroRadioButton2.Size = new System.Drawing.Size(85, 15);
             this.metroRadioButton2.TabIndex = 16;
@@ -304,12 +306,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Anwendung";
             // 
+            // btnRefreshCustomerList
+            // 
+            this.btnRefreshCustomerList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefreshCustomerList.BackgroundImage")));
+            this.btnRefreshCustomerList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshCustomerList.Location = new System.Drawing.Point(940, 194);
+            this.btnRefreshCustomerList.Name = "btnRefreshCustomerList";
+            this.btnRefreshCustomerList.Size = new System.Drawing.Size(23, 22);
+            this.btnRefreshCustomerList.TabIndex = 23;
+            this.btnRefreshCustomerList.UseSelectable = true;
+            this.btnRefreshCustomerList.Click += new System.EventHandler(this.BtnRefreshCustomerList_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.btnRefreshCustomerList);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.metroRadioButton2);
@@ -358,6 +372,7 @@
         private MetroFramework.Controls.MetroButton metroButton7;
         private MetroFramework.Controls.MetroButton btnSettings;
         private System.Windows.Forms.GroupBox groupBox2;
+        private MetroFramework.Controls.MetroButton btnRefreshCustomerList;
     }
 }
 

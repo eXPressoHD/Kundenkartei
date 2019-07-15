@@ -148,10 +148,7 @@ namespace Kundenkartei
 
         private void Main_Activated(object sender, EventArgs e)
         {
-            metroListView1.BeginUpdate();
-            metroListView1.Items.Clear();
-            FillCustomerList();
-            metroListView1.EndUpdate();
+            
         }
 
         /// <summary>
@@ -285,6 +282,10 @@ namespace Kundenkartei
                 {
                     _logger.Error(ex);
                 }
+                finally
+                {
+                    metroListView1.CheckedItems[0].Checked = false;
+                }
             }
             else
             {
@@ -348,17 +349,27 @@ namespace Kundenkartei
         {
             if (metroListView1.CheckedItems.Count == 1)
             {
-                int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
-                ShowCustomerNotes n = new ShowCustomerNotes();
-                n.Tag = kundenNr;
+                try
+                {
+                    int kundenNr = Convert.ToInt32(metroListView1.CheckedItems[0].SubItems[1].Text.ToString());
+                    ShowCustomerNotes n = new ShowCustomerNotes();
+                    n.Tag = kundenNr;
 
-                if ((Application.OpenForms["ShowCustomerNotes"] as ShowCustomerNotes) != null)
+                    if ((Application.OpenForms["ShowCustomerNotes"] as ShowCustomerNotes) != null)
+                    {
+                        //Form is already open
+                    }
+                    else
+                    {
+                        n.ShowDialog();
+                    }
+                }catch(Exception ex)
                 {
-                    //Form is already open
+                    _logger.Error(ex.Message);
                 }
-                else
+                finally
                 {
-                    n.ShowDialog();
+                    metroListView1.CheckedItems[0].Checked = false;
                 }
             }
             else
@@ -381,6 +392,14 @@ namespace Kundenkartei
         {
             Settings settings = new Settings();
             settings.ShowDialog();
+        }
+
+        private void BtnRefreshCustomerList_Click(object sender, EventArgs e)
+        {
+            metroListView1.BeginUpdate();
+            metroListView1.Items.Clear();
+            FillCustomerList();
+            metroListView1.EndUpdate();
         }
     }
 }

@@ -59,6 +59,7 @@
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.rtbChanges = new System.Windows.Forms.RichTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.btnAddChange = new MetroFramework.Controls.MetroButton();
             this.TabControl.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -302,6 +303,7 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.btnAddChange);
             this.metroTabPage2.Controls.Add(this.b);
             this.metroTabPage2.Controls.Add(this.btnSaveChanges);
             this.metroTabPage2.Controls.Add(this.labKNrTab2);
@@ -336,7 +338,7 @@
             // btnSaveChanges
             // 
             this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveChanges.Location = new System.Drawing.Point(10, 599);
+            this.btnSaveChanges.Location = new System.Drawing.Point(201, 599);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(168, 46);
             this.btnSaveChanges.TabIndex = 35;
@@ -404,6 +406,17 @@
             this.metroLabel6.TabIndex = 30;
             this.metroLabel6.Text = "Änderungen:";
             // 
+            // btnAddChange
+            // 
+            this.btnAddChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddChange.Location = new System.Drawing.Point(10, 599);
+            this.btnAddChange.Name = "btnAddChange";
+            this.btnAddChange.Size = new System.Drawing.Size(168, 46);
+            this.btnAddChange.TabIndex = 37;
+            this.btnAddChange.Text = "Änderung hinzufügen";
+            this.btnAddChange.UseSelectable = true;
+            this.btnAddChange.Click += new System.EventHandler(this.BtnAddChange_Click);
+            // 
             // ShowCustomerNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,5 +470,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroButton b;
         private MetroFramework.Controls.MetroButton btnSaveChanges;
+        private MetroFramework.Controls.MetroButton btnAddChange;
     }
 }

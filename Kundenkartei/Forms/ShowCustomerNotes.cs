@@ -257,5 +257,13 @@ namespace Kundenkartei
         {
             this.Close();
         }
+
+        private void BtnAddChange_Click(object sender, EventArgs e)
+        {
+            rtbChanges.Text += Environment.NewLine;
+            rtbChanges.Text += Environment.NewLine;
+            rtbChanges.Text += DateTime.Now.ToString("dd.MM.yyyy");
+            rtbChanges.Text += Environment.NewLine;
+        }
     }
 }
